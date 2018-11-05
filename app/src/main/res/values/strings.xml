@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Year In Pixels</string> <!-- Mood Chart-->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_today">Today Mood</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="month_initial_january">J</string>
+    <string name="month_initial_february">F</string>
+    <string name="month_initial_march">M</string>
+    <string name="month_initial_april">A</string>
+    <string name="month_initial_may">M</string>
+    <string name="month_initial_june">J</string>
+    <string name="month_initial_july">J</string>
+    <string name="month_initial_august">A</string>
+    <string name="month_initial_september">S</string>
+    <string name="month_initial_october">O</string>
+    <string name="month_initial_november">N</string>
+    <string name="month_initial_december">D</string>
+</resources>
