@@ -40,12 +40,9 @@ public class MainActivity extends AppCompatActivity
     public final String DAILY_MOOD_ID_KEY = "mood_id_key";
     public final String DAY_POSITION_KEY = "day_position_key";
 
-//    @BindView(R.id.numbers_list)
-//    RecyclerView mNumbersRecyclerView;
     @BindView(R.id.moods_list)
     RecyclerView mMoodsRecyclerView;
 
-//    private NumbersAdapter mNumbersAdapter;
     private DailyMoodAdapter mAdapter;
 
     @Override
@@ -72,7 +69,6 @@ public class MainActivity extends AppCompatActivity
         SimpleDateFormat simpleYearFormat = new SimpleDateFormat("yyyy", Locale.US);
         int year = Integer.parseInt(simpleYearFormat.format(time));
         Log.v("YEAR", simpleYearFormat.format(time));
-        //int year = Integer.getInteger(simpleYearFormat.format(time));
         SimpleDateFormat simpleMonthFormat = new SimpleDateFormat("M", Locale.US);
         Log.v("MONTH", simpleMonthFormat.format(time));
 
@@ -94,17 +90,15 @@ public class MainActivity extends AppCompatActivity
             moodsList.add(null);
         }
 
-        //janList.add();
-
         moodsList.add(new DailyMood(0xFFFF0000));
         moodsList.add(new DailyMood(0xFFFFC0CB));//, null, null));
         moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
         moodsList.add(new DailyMood(0xFFFF00CB));//, null, null));
         moodsList.add(new DailyMood(0xFFFFC000));//, null, null));
-        moodsList.add(new DailyMood(0xFFFAA0CB, 0xFF115588));//, null, null));
-        moodsList.add(new DailyMood(0xFFFFC0CB, 0xFF4466AA));//, null, null));
+        moodsList.add(new DailyMood(0xFF115588));//, null, null));
+        moodsList.add(new DailyMood(0xFF4466AA));//, null, null));
         moodsList.add(new DailyMood(0xFF99C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFCCC0CB, 0xFF5656BB, 0xFFBBEE79));//, null, null));
+        moodsList.add(new DailyMood(0xFF5656BB));//, null, null));
         moodsList.add(new DailyMood(0xFF22C0CB));//, null, null));
         moodsList.add(new DailyMood(0xFF11C0CB));//, null, null));
         moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
@@ -114,10 +108,10 @@ public class MainActivity extends AppCompatActivity
         moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
         moodsList.add(new DailyMood(0xFFFF00CB));//, null, null));
         moodsList.add(new DailyMood(0xFFFFC000));//, null, null));
-        moodsList.add(new DailyMood(0xFFFAA0CB, 0xFF115588));//, null, null));
-        moodsList.add(new DailyMood(0xFFFFC0CB, 0xFF4466AA));//, null, null));
+        moodsList.add(new DailyMood(0xFF115588));//, null, null));
+        moodsList.add(new DailyMood(0xFF4466AA));//, null, null));
         moodsList.add(new DailyMood(0xFF99C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFCCC0CB, 0xFF5656BB, 0xFFBBEE79));//, null, null));
+        moodsList.add(new DailyMood(0xFFCCC0CB));//, null, null));
         moodsList.add(new DailyMood(0xFF22C0CB));//, null, null));
         moodsList.add(new DailyMood(0xFF11C0CB));//, null, null));
         moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
@@ -127,10 +121,10 @@ public class MainActivity extends AppCompatActivity
         moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
         moodsList.add(new DailyMood(0xFFFF00CB));//, null, null));
         moodsList.add(new DailyMood(0xFFFFC000));//, null, null));
-        moodsList.add(new DailyMood(0xFFFAA0CB, 0xFF115588));//, null, null));
-        moodsList.add(new DailyMood(0xFFFFC0CB, 0xFF4466AA));//, null, null));
+        moodsList.add(new DailyMood(0xFF115588));//, null, null));
+        moodsList.add(new DailyMood(0xFF4466AA));//, null, null));
         moodsList.add(new DailyMood(0xFF99C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFCCC0CB, 0xFF5656BB, 0xFFBBEE79));//, null, null));
+        moodsList.add(new DailyMood(0xFFCCC0CB));//, null, null));
         moodsList.add(new DailyMood(0xFF22C0CB));//, null, null));
         moodsList.add(new DailyMood(0xFF11C0CB));//, null, null));
 
@@ -139,82 +133,6 @@ public class MainActivity extends AppCompatActivity
             moodsList.add(null);
         }
 
-
-
-//        int[] numbers = new int[32];
-//        for (int i = 0; i < 32; i++) {
-//            numbers[i] = i;
-//        }
-
-//        ArrayList<DailyMood> janList = new ArrayList<>();
-//        for (int i = 0; i < 32; i++) {
-//            janList.add(new DailyMood(0xFFFFFFFF, 1, null));
-//        }
-
-//        ArrayList<DailyMood> febList = new ArrayList<>();
-//        for (int i = 0; i < 30; i++) {
-//            febList.add(new DailyMood(2, null));
-//        }
-//
-//        ArrayList<DailyMood> marList = new ArrayList<>();
-//        for (int i = 0; i < 32; i++) {
-//            marList.add(new DailyMood(3, null));
-//        }
-//
-//        ArrayList<DailyMood> aprList = new ArrayList<>();
-//        for (int i = 0; i < 31; i++) {
-//            aprList.add(new DailyMood(4, null));
-//        }
-//
-//        ArrayList<DailyMood> mayList = new ArrayList<>();
-//        for (int i = 0; i < 32; i++) {
-//            mayList.add(new DailyMood(5, null));
-//        }
-//
-//        ArrayList<DailyMood> junList = new ArrayList<>();
-//        for (int i = 0; i < 31; i++) {
-//            junList.add(new DailyMood(6, null));
-//        }
-//
-//        ArrayList<DailyMood> julList = new ArrayList<>();
-//        for (int i = 0; i < 32; i++) {
-//            julList.add(new DailyMood(7, null));
-//        }
-//
-//        ArrayList<DailyMood> augList = new ArrayList<>();
-//        for (int i = 0; i < 32; i++) {
-//            augList.add(new DailyMood(8, null));
-//        }
-//
-//        ArrayList<DailyMood> sepList = new ArrayList<>();
-//        for (int i = 0; i < 31; i++) {
-//            sepList.add(new DailyMood(9, null));
-//        }
-//
-//        ArrayList<DailyMood> octList = new ArrayList<>();
-//        for (int i = 0; i < 32; i++) {
-//            octList.add(new DailyMood(10, null));
-//        }
-//
-//        ArrayList<DailyMood> novList = new ArrayList<>();
-//        for (int i = 0; i < 31; i++) {
-//            novList.add(new DailyMood(11, null));
-//        }
-//
-//        ArrayList<DailyMood> decList = new ArrayList<>();
-//        for (int i = 0; i < 32; i++) {
-//            decList.add(new DailyMood(12, null));
-//        }
-//
-//
-//        mNumbersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mNumbersRecyclerView.setNestedScrollingEnabled(false);
-//        mNumbersRecyclerView.addItemDecoration(mDividerItemDecoration);
-//        mNumbersRecyclerView.setHasFixedSize(false);
-//        mNumbersAdapter = new NumbersAdapter(this);
-//        mNumbersAdapter.setNumbers(numbers);
-//        mNumbersRecyclerView.setAdapter(mNumbersAdapter);
-//
         mMoodsRecyclerView.setLayoutManager(new GridLayoutManager(this, 13));
         mMoodsRecyclerView.setNestedScrollingEnabled(false);
         mMoodsRecyclerView.setHasFixedSize(false);

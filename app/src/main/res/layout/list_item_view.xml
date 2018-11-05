@@ -14,68 +14,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<View-->
-        <!--android:id="@+id/up_left_view"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:background="#10000000"-->
-        <!--tools:background="@color/colorAccent"-->
-        <!--app:layout_constraintBottom_toTopOf="@id/horizontal_guideline"-->
-        <!--app:layout_constraintEnd_toStartOf="@id/vertical_guideline"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--<View-->
-        <!--android:id="@+id/up_right_view"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:background="#10000000"-->
-        <!--tools:background="@color/colorPrimary"-->
-        <!--app:layout_constraintBottom_toTopOf="@id/horizontal_guideline"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toEndOf="@id/vertical_guideline"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--<View-->
-        <!--android:id="@+id/down_left_view"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:background="#10000000"-->
-        <!--tools:background="@color/colorPrimaryDark"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toStartOf="@id/vertical_guideline"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/horizontal_guideline" />-->
-
-    <!--<View-->
-        <!--android:id="@+id/down_right_view"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:background="#10000000"-->
-        <!--tools:background="@android:color/holo_purple"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toEndOf="@id/vertical_guideline"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/horizontal_guideline" />-->
-
-    <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/vertical_guideline"-->
-        <!--android:layout_width="1dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintGuide_percent="0.5"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-
-    <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/horizontal_guideline"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintGuide_percent="0.5"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-
     <TextView
         android:id="@+id/month_text_view"
         android:layout_width="match_parent"
@@ -85,6 +23,5 @@
         android:visibility="gone"
         tools:text="J"
         android:gravity="center" />
-
 
 </android.support.constraint.ConstraintLayout>
