@@ -48,4 +48,18 @@ public class Preferences {
         editor.putInt(context.getString(R.string.pref_selected_year_key), year);
         editor.apply();
     }
+
+    // Return true if the year was initialized or false otherwise
+    public static boolean checkSelectedYearInitializationState(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return sp.getBoolean(context.getString(R.string.pref_year_initialized_key), false);
+    }
+
+    // Set true if selected year was initialized
+    public static void setSelectedYearInitializationState(Context context, boolean initialized) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean(context.getString(R.string.pref_year_initialized_key), initialized);
+        editor.apply();
+    }
 }

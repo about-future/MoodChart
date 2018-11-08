@@ -18,8 +18,15 @@ public interface MoodsDao {
     //@Query("SELECT * FROM moods WHERE year = :year AND month = :month ORDER BY id ASC")
     //LiveData<List<DailyMood>> loadAllMoodsOfThisMonth(int year, int month);
 
-    @Query("SELECT * FROM moods WHERE id = :id")
-    LiveData<DailyMood> loadMoodDetails(int id);
+    @Query("SELECT * FROM moods WHERE year = :year AND position = :position ORDER BY id ASC")
+    LiveData<DailyMood> loadMoodDetails(int position, int year);
+
+    /*
+    @Query("SELECT COUNT(*) FROM moods WHERE year = :year")
+    int countMoods(int year); */
+
+    @Insert //(onConflict = OnConflictStrategy.REPLACE)
+    void insertEntireYearMoods(List<DailyMood> entireYearMoods);
 
     @Insert
     void insertDailyMood(DailyMood dailyMood);
@@ -27,6 +34,6 @@ public interface MoodsDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateDailyMood(DailyMood dailyMood);
 
-    @Delete
-    void deleteDailyMood(DailyMood dailyMood);
+//    @Delete
+//    void deleteDailyMood(DailyMood dailyMood);
 }

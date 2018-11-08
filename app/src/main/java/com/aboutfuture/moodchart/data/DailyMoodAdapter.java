@@ -20,11 +20,11 @@ import butterknife.ButterKnife;
 
 public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.ViewHolder> {
     private final Context mContext;
-    private int[] mMoods;
+    private List<DailyMood> mDailyMoods;
     private final ListItemClickListener mOnClickListener;
 
     public interface ListItemClickListener {
-        void onItemClickListener(int dailyMoodId, int position);
+        void onItemClickListener(int position);
     }
 
     public DailyMoodAdapter(Context context, ListItemClickListener clickListener) {
@@ -34,14 +34,12 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
 
     @NonNull
     @Override
-    public DailyMoodAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.list_item_view, parent, false);
-        view.setFocusable(false);
-        return new DailyMoodAdapter.ViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.list_item_view, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DailyMoodAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Set text
         if (position == 0) {
             holder.dayMoodTextView.setText("");
@@ -62,8 +60,8 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
         } else if (position == 379) {
             if (SpecialUtils.isLeapYear(Preferences.getSelectedYear(mContext))) {
                 //TODO: code is repeating here
-                if (mMoods.get(position) != null) {
-                    holder.dayMoodTextView.setBackgroundColor(mMoods.get(position).getFirstColor());
+                if (mDailyMoods.get(position) != null && mDailyMoods.get(position).getFirstColor() != 0) {
+                    holder.dayMoodTextView.setBackgroundColor(mDailyMoods.get(position).getFirstColor());
                 } else {
                     holder.dayMoodTextView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
                 }
@@ -72,8 +70,8 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
             }
         } else {
             //TODO: code is repeating here
-            if (mMoods.get(position) != null) {
-                holder.dayMoodTextView.setBackgroundColor(mMoods.get(position).getFirstColor());
+            if (mDailyMoods.get(position) != null && mDailyMoods.get(position).getFirstColor() != 0) {
+                holder.dayMoodTextView.setBackgroundColor(mDailyMoods.get(position).getFirstColor());
             } else {
                 holder.dayMoodTextView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
             }
@@ -82,7 +80,7 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
 
     @Override
     public int getItemCount() {
-        return mMoods != null ? mMoods.length : 0;
+        return mDailyMoods != null ? mDailyMoods.size() : 0; //mMoods != null ? mMoods.length : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -103,25 +101,17 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
             if (position > 12 && position % 13 != 0 && position != 392 && position != 405 &&
                     position != 407 && position != 409 && position != 412 && position != 414) {
                 if (position == 379) {
-                    if (SpecialUtils.isLeapYear(mMoods.get(position))) {
-                        if (mMoods.get(position) != null) {
-                            mOnClickListener.onItemClickListener(mMoods.get(position).getId(), position);
-                        } else {
-                            mOnClickListener.onItemClickListener(-1, position);
-                        }
+                    if (SpecialUtils.isLeapYear(Preferences.getSelectedYear(mContext))) {
+                        mOnClickListener.onItemClickListener(position);
                     }
                 } else {
-                    if (mMoods.get(position) != null) {
-                        mOnClickListener.onItemClickListener(mMoods.get(position).getId(), position);
-                    } else {
-                        mOnClickListener.onItemClickListener(-1, position);
-                    }
+                    mOnClickListener.onItemClickListener(position);
                 }
             }
         }
     }
 
-    public void setDailyMoods(List<DailyMood> moodsList) {
-        mMoods = moodsList;
+    public void setMoods(List<DailyMood> dailyMoods) {
+        mDailyMoods = dailyMoods;
     }
 }

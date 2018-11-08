@@ -12,6 +12,9 @@
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
 
+    <string name="format_date">Today, %s %d %d I felt&#8230;</string>
+    <string name="question">How do you feel today?</string>
+
     <string name="month_initial_january">J</string>
     <string name="month_initial_february">F</string>
     <string name="month_initial_march">M</string>
@@ -24,6 +27,19 @@
     <string name="month_initial_october">O</string>
     <string name="month_initial_november">N</string>
     <string name="month_initial_december">D</string>
+
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
 
     <string name="label_mood_1">Loved</string>
     <string name="label_mood_2">Happy</string>
@@ -64,5 +80,6 @@
     <string name="pref_mood_12_label_key">mood_12_label</string>
 
     <string name="pref_selected_year_key">selected_year</string>
+    <string name="pref_year_initialized_key">year_initialized</string>
 
 </resources>

@@ -9,8 +9,8 @@ import com.aboutfuture.moodchart.data.DailyMood;
 public class AddDailyMoodViewModel extends ViewModel {
     private LiveData<DailyMood> dailyMood;
 
-    public AddDailyMoodViewModel(AppDatabase database, int dailyMoodId) {
-        dailyMood = database.moodsDao().loadMoodDetails(dailyMoodId);
+    public AddDailyMoodViewModel(AppDatabase database, int position, int year) {
+        dailyMood = database.moodsDao().loadMoodDetails(position, year);
     }
 
     public LiveData<DailyMood> getDailyMoodDetails() {

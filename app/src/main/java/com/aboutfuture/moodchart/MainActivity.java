@@ -18,11 +18,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aboutfuture.moodchart.data.AppDatabase;
+import com.aboutfuture.moodchart.data.AppExecutors;
 import com.aboutfuture.moodchart.data.DailyMood;
 import com.aboutfuture.moodchart.data.DailyMoodAdapter;
 import com.aboutfuture.moodchart.utils.Preferences;
 import com.aboutfuture.moodchart.viewmodel.YearViewModel;
-import com.aboutfuture.moodchart.viewmodel.YearViewModelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,18 +33,12 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DailyMoodAdapter.ListItemClickListener {
 
-    public static final String DAILY_MOOD_ID_KEY = "mood_id_key";
     public static final String SELECTED_DAY_POSITION_KEY = "day_position_key";
-    public static final String SELECTED_YEAR_KEY = "year_key";
 
     @BindView(R.id.moods_list)
     RecyclerView mMoodsRecyclerView;
     private DailyMoodAdapter mAdapter;
     private AppDatabase mDb;
-    private List<DailyMood> mMoodsList;
-    private ArrayList<DailyMood> mYearList;
-    private int mYear;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,37 +60,22 @@ public class MainActivity extends AppCompatActivity
         // TODO: Create a + - button to change the value of a shared preference for the selected year
         // First the year is the current year and the app will load data from this year.
 
-        mDb = AppDatabase.getInstance(getApplicationContext());
-        mYear = Preferences.getSelectedYear(this);
-        setupViewModel();
-
-        mYearList = new ArrayList<>();
-        for (int i = 0; i < 13; i++) {
-            mYearList.add(null);
-        }
-
-        mYearList.add(new DailyMood(0xFFFF0000));
-        mYearList.add(new DailyMood(0xFFFFC0CB));
-        mYearList.add(new DailyMood(0xFF00C0CB));
-        mYearList.add(new DailyMood(0xFFFF00CB));
-        mYearList.add(new DailyMood(0xFFFFC000));
-        mYearList.add(new DailyMood(0xFF115588));
-
-        int currentSize = mYearList.size();
-
-        for (int i = 0; i < 416 - currentSize; i++) {
-            if (i == 344) {
-                mYearList.add(new DailyMood(0xFF11C0CB));
-            } else {
-                mYearList.add(null);
-            }
-        }
-
         mMoodsRecyclerView.setLayoutManager(new GridLayoutManager(this, 13));
         mMoodsRecyclerView.setHasFixedSize(true);
         mAdapter = new DailyMoodAdapter(this, this);
         mMoodsRecyclerView.setAdapter(mAdapter);
-        mAdapter.setDailyMoods(mYearList);
+
+        mDb = AppDatabase.getInstance(getApplicationContext());
+
+        setupViewModel();
+
+        // Check to see if this year was initialized already, if it was setup the viewmodel, otherwise
+        // insert empty days for the entire year
+        if (Preferences.checkSelectedYearInitializationState(this)) {
+            setupViewModel();
+        } else {
+            insertEmptyYear();
+        }
     }
 
     @Override
@@ -157,31 +136,44 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemClickListener(int dailyMoodId, int position) {
+    public void onItemClickListener(int position) {
         Intent moodDetailsIntent = new Intent(MainActivity.this, TodayActivity.class);
-        if (dailyMoodId != -1) {
-            moodDetailsIntent.putExtra(DAILY_MOOD_ID_KEY, dailyMoodId);
-        }
         moodDetailsIntent.putExtra(SELECTED_DAY_POSITION_KEY, position);
-        moodDetailsIntent.putExtra(SELECTED_YEAR_KEY, mYear);
         startActivity(moodDetailsIntent);
     }
 
-    private void setupViewModel() {
-        YearViewModelFactory factory = new YearViewModelFactory(mDb, mYear);
-        final YearViewModel viewModel = ViewModelProviders.of(this, factory).get(YearViewModel.class);
-        viewModel.getYearMoods().observe(this, new Observer<List<DailyMood>>() {
+    private void insertEmptyYear() {
+        final ArrayList<DailyMood> mEntireYearMoodsList = new ArrayList<>();
+        for (int i = 0; i < 416; i++) {
+            mEntireYearMoodsList.add(new DailyMood(
+                    Preferences.getSelectedYear(this),
+                    i,
+                    0,
+                    0));
+        }
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
-            public void onChanged(@Nullable List<DailyMood> moodsList) {
-                mMoodsList = moodsList;
-                mAdapter.setDailyMoods(moodsList);
+            public void run() {
+                // Insert empty days for the selected year into the DB
+                mDb.moodsDao().insertEntireYearMoods(mEntireYearMoodsList);
+                Preferences.setSelectedYearInitializationState(MainActivity.this, true);
             }
         });
+
+        setupViewModel();
     }
 
-    private void initYear() {
-        for (int i = 0; i < mMoodsList.size(); i++) {
-            mYearList.set(mMoodsList.get(i).getPosition(), mMoodsList.get(i).getFirstColor());
-        }
+    private void setupViewModel() {
+        YearViewModel yearViewModel = ViewModelProviders.of(this).get(YearViewModel.class);
+        yearViewModel.getAllYearMoods().observe(this, new Observer<List<DailyMood>>() {
+            @Override
+            public void onChanged(@Nullable List<DailyMood> yearMoodsList) {
+                if (yearMoodsList != null) {
+                    mAdapter.setMoods(yearMoodsList);
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 }

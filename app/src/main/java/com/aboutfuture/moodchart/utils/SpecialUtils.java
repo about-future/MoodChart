@@ -40,14 +40,36 @@ public class SpecialUtils {
         }
     }
 
-    public static boolean isLeapYear(int year) {
-//        int year;
-//        if (mood != null) {
-//            year = mood.getYear();
-//        } else {
-//            year = getCurrentYear();
-//        }
+    public static String getMonthName(Context context, int month) {
+        switch (month) {
+            case 1:
+                return context.getString(R.string.january);
+            case 2:
+                return context.getString(R.string.february);
+            case 3:
+                return context.getString(R.string.march);
+            case 4:
+                return context.getString(R.string.april);
+            case 5:
+                return context.getString(R.string.may);
+            case 6:
+                return context.getString(R.string.june);
+            case 7:
+                return context.getString(R.string.july);
+            case 8:
+                return context.getString(R.string.august);
+            case 9:
+                return context.getString(R.string.september);
+            case 10:
+                return context.getString(R.string.october);
+            case 11:
+                return context.getString(R.string.november);
+            default:
+                return context.getString(R.string.december);
+        }
+    }
 
+    public static boolean isLeapYear(int year) {
         // Calculate if it's a leap year
         if (year % 4 == 0 && year % 100 != 0) {
             return true;

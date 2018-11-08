@@ -11,7 +11,7 @@ public class DailyMood {
     private int id;
     // Year of entry
     private int year;
-    // Position in the year matrix (13 cols x 32 rows)
+    // Position in the year matrix of 13 cols x 32 rows
     private int position;
     @ColumnInfo(name = "first_color")
     private int firstColor;

@@ -8,17 +8,19 @@ import com.aboutfuture.moodchart.data.AppDatabase;
 
 public class AddDailyMoodViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private final AppDatabase mDb;
-    private final int mDailyMoodId;
+    private final int mPosition;
+    private final int mYear;
 
-    public AddDailyMoodViewModelFactory(AppDatabase database, int dailyMoodId) {
+    public AddDailyMoodViewModelFactory(AppDatabase database, int position, int year) {
         mDb = database;
-        mDailyMoodId = dailyMoodId;
+        mPosition = position;
+        mYear = year;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         //noinspection unchecked
-        return (T) new AddDailyMoodViewModel(mDb, mDailyMoodId);
+        return (T) new AddDailyMoodViewModel(mDb, mPosition, mYear);
     }
 }
