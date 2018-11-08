@@ -2,6 +2,7 @@ package com.aboutfuture.moodchart.data;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aboutfuture.moodchart.R;
+import com.aboutfuture.moodchart.utils.Preferences;
 import com.aboutfuture.moodchart.utils.SpecialUtils;
 
 import java.util.List;
@@ -18,7 +20,7 @@ import butterknife.ButterKnife;
 
 public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.ViewHolder> {
     private final Context mContext;
-    private List<DailyMood> mDailyMoods;
+    private int[] mMoods;
     private final ListItemClickListener mOnClickListener;
 
     public interface ListItemClickListener {
@@ -40,41 +42,52 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull DailyMoodAdapter.ViewHolder holder, int position) {
-
+        // Set text
         if (position == 0) {
-            holder.cellView.setVisibility(View.GONE);
-            holder.monthTextView.setVisibility(View.VISIBLE);
-            holder.monthTextView.setText("");
+            holder.dayMoodTextView.setText("");
         } else if (position > 0 && position <= 12) {
-            holder.cellView.setVisibility(View.GONE);
-            holder.monthTextView.setVisibility(View.VISIBLE);
-            holder.monthTextView.setText(SpecialUtils.getMonthInitial(mContext, position));
+            holder.dayMoodTextView.setText(SpecialUtils.getMonthInitial(mContext, position));
         } else if (position % 13 == 0) {
-            holder.cellView.setVisibility(View.GONE);
-            holder.monthTextView.setVisibility(View.VISIBLE);
-            holder.monthTextView.setText(String.valueOf(position / 13));
+            holder.dayMoodTextView.setText(String.valueOf(position / 13));
         } else {
-            holder.cellView.setVisibility(View.VISIBLE);
-            holder.monthTextView.setVisibility(View.GONE);
+            holder.dayMoodTextView.setText("");
+        }
 
-            DailyMood currentDay = mDailyMoods.get(position);
-
-            if (currentDay != null) {
-                holder.cellView.setBackgroundColor(currentDay.getFirstColor());
+        // Set background color
+        if ((position >= 0 && position <= 12) ||
+                position % 13 == 0 ||
+                position == 392 || position == 405 || position == 407 ||
+                position == 409 || position == 412 || position == 414) {
+            holder.dayMoodTextView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorWhite));
+        } else if (position == 379) {
+            if (SpecialUtils.isLeapYear(Preferences.getSelectedYear(mContext))) {
+                //TODO: code is repeating here
+                if (mMoods.get(position) != null) {
+                    holder.dayMoodTextView.setBackgroundColor(mMoods.get(position).getFirstColor());
+                } else {
+                    holder.dayMoodTextView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
+                }
+            } else {
+                holder.dayMoodTextView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorWhite));
+            }
+        } else {
+            //TODO: code is repeating here
+            if (mMoods.get(position) != null) {
+                holder.dayMoodTextView.setBackgroundColor(mMoods.get(position).getFirstColor());
+            } else {
+                holder.dayMoodTextView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
             }
         }
     }
 
     @Override
     public int getItemCount() {
-        return mDailyMoods != null ? mDailyMoods.size() : 0;
+        return mMoods != null ? mMoods.length : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.up_view)
-        View cellView;
-        @BindView(R.id.month_text_view)
-        TextView monthTextView;
+        @BindView(R.id.day_mood_text_view)
+        TextView dayMoodTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -85,17 +98,30 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            if (position > 12 && position % 13 != 0) {
-                if (mDailyMoods.get(position) != null) {
-                    mOnClickListener.onItemClickListener(mDailyMoods.get(position).getId(), position);
+            // For all the positions that are not listed bellow or if position is 379 and
+            // it's a leap year, we set a listener
+            if (position > 12 && position % 13 != 0 && position != 392 && position != 405 &&
+                    position != 407 && position != 409 && position != 412 && position != 414) {
+                if (position == 379) {
+                    if (SpecialUtils.isLeapYear(mMoods.get(position))) {
+                        if (mMoods.get(position) != null) {
+                            mOnClickListener.onItemClickListener(mMoods.get(position).getId(), position);
+                        } else {
+                            mOnClickListener.onItemClickListener(-1, position);
+                        }
+                    }
                 } else {
-                    mOnClickListener.onItemClickListener(-1, position);
+                    if (mMoods.get(position) != null) {
+                        mOnClickListener.onItemClickListener(mMoods.get(position).getId(), position);
+                    } else {
+                        mOnClickListener.onItemClickListener(-1, position);
+                    }
                 }
             }
         }
     }
 
-    public void setDailyMoods(List<DailyMood> dailyMoods) {
-        mDailyMoods = dailyMoods;
+    public void setDailyMoods(List<DailyMood> moodsList) {
+        mMoods = moodsList;
     }
 }

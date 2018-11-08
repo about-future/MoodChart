@@ -15,8 +15,8 @@ public interface MoodsDao {
     @Query("SELECT * FROM moods WHERE year = :year ORDER BY id ASC")
     LiveData<List<DailyMood>> loadAllMoodsOfThisYear(int year);
 
-    @Query("SELECT * FROM moods WHERE year = :year AND month = :month ORDER BY id ASC")
-    LiveData<List<DailyMood>> loadAllMoodsOfThisMonth(int year, int month);
+    //@Query("SELECT * FROM moods WHERE year = :year AND month = :month ORDER BY id ASC")
+    //LiveData<List<DailyMood>> loadAllMoodsOfThisMonth(int year, int month);
 
     @Query("SELECT * FROM moods WHERE id = :id")
     LiveData<DailyMood> loadMoodDetails(int id);

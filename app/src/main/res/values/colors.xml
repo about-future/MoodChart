@@ -3,4 +3,28 @@
     <color name="colorPrimary">#660077</color>
     <color name="colorPrimaryDark">#4A0067</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorTransparentWhite">#00FFFFFF</color>
+    <color name="colorTranslucentWhite">#60FFFFFF</color>
+    <color name="colorGray">#FF333333</color>
+    <color name="colorLightGray">#60000000</color>
+    <color name="colorLightestGray">#40000000</color>
+    <color name="colorFeatherGray">#10000000</color>
+
+    <color name="mood_color_1">#FFFF0000</color>
+    <color name="mood_color_2">#FFFF0099</color>
+    <color name="mood_color_3">#FFBA0BB4</color>
+    <color name="mood_color_4">#FF00FF00</color>
+    <color name="mood_color_5">#FF088AF0</color>
+    <color name="mood_color_6">#FFAEA031</color>
+    <color name="mood_color_7">#FF212121</color>
+    <color name="mood_color_8">#FF212121</color>
+    <color name="mood_color_9">#FF212121</color>
+    <color name="mood_color_10">#FF212121</color>
+    <color name="mood_color_11">#FF212121</color>
+    <color name="mood_color_12">#FF212121</color>
+
+    <color name="gold">#d8d33c</color>
+
 </resources>

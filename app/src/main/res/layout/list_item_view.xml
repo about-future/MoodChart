@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="28dp"
-    android:padding="1dp"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <View
-        android:id="@+id/up_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#10000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:padding="1dp">
 
     <TextView
-        android:id="@+id/month_text_view"
+        android:id="@+id/day_mood_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/item_selector"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        tools:text="J"
-        android:gravity="center" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="J" />
 
 </android.support.constraint.ConstraintLayout>

@@ -7,7 +7,10 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
     <string name="action_settings">Settings</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
 
     <string name="month_initial_january">J</string>
     <string name="month_initial_february">F</string>
@@ -21,4 +24,45 @@
     <string name="month_initial_october">O</string>
     <string name="month_initial_november">N</string>
     <string name="month_initial_december">D</string>
+
+    <string name="label_mood_1">Loved</string>
+    <string name="label_mood_2">Happy</string>
+    <string name="label_mood_3">Thankful</string>
+    <string name="label_mood_4">Productive / Successful</string>
+    <string name="label_mood_5">Relaxed</string>
+    <string name="label_mood_6">Fine</string>
+    <string name="label_mood_7">Bored</string>
+    <string name="label_mood_8">Lazy</string>
+    <string name="label_mood_9">Tired</string>
+    <string name="label_mood_10">Sad</string>
+    <string name="label_mood_11">Sick</string>
+    <string name="label_mood_12">Angry</string>
+
+    <string name="pref_mood_1_color_key">mood_1</string>
+    <string name="pref_mood_1_label_key">mood_1_label</string>
+    <string name="pref_mood_2_color_key">mood_2</string>
+    <string name="pref_mood_2_label_key">mood_2_label</string>
+    <string name="pref_mood_3_color_key">mood_3</string>
+    <string name="pref_mood_3_label_key">mood_3_label</string>
+    <string name="pref_mood_4_color_key">mood_4</string>
+    <string name="pref_mood_4_label_key">mood_4_label</string>
+    <string name="pref_mood_5_color_key">mood_5</string>
+    <string name="pref_mood_5_label_key">mood_5_label</string>
+    <string name="pref_mood_6_color_key">mood_6</string>
+    <string name="pref_mood_6_label_key">mood_6_label</string>
+    <string name="pref_mood_7_color_key">mood_7</string>
+    <string name="pref_mood_7_label_key">mood_7_label</string>
+    <string name="pref_mood_8_color_key">mood_8</string>
+    <string name="pref_mood_8_label_key">mood_8_label</string>
+    <string name="pref_mood_9_color_key">mood_9</string>
+    <string name="pref_mood_9_label_key">mood_9_label</string>
+    <string name="pref_mood_10_color_key">mood_10</string>
+    <string name="pref_mood_10_label_key">mood_10_label</string>
+    <string name="pref_mood_11_color_key">mood_11</string>
+    <string name="pref_mood_11_label_key">mood_11_label</string>
+    <string name="pref_mood_12_color_key">mood_12</string>
+    <string name="pref_mood_12_label_key">mood_12_label</string>
+
+    <string name="pref_selected_year_key">selected_year</string>
+
 </resources>

@@ -1,15 +1,13 @@
 package com.aboutfuture.moodchart;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.DividerItemDecoration;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,18 +16,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridView;
-import android.widget.ListView;
 
+import com.aboutfuture.moodchart.data.AppDatabase;
 import com.aboutfuture.moodchart.data.DailyMood;
 import com.aboutfuture.moodchart.data.DailyMoodAdapter;
-import com.aboutfuture.moodchart.data.NumbersAdapter;
+import com.aboutfuture.moodchart.utils.Preferences;
+import com.aboutfuture.moodchart.viewmodel.YearViewModel;
+import com.aboutfuture.moodchart.viewmodel.YearViewModelFactory;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,113 +33,75 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DailyMoodAdapter.ListItemClickListener {
 
-    public final String DAILY_MOOD_ID_KEY = "mood_id_key";
-    public final String DAY_POSITION_KEY = "day_position_key";
+    public static final String DAILY_MOOD_ID_KEY = "mood_id_key";
+    public static final String SELECTED_DAY_POSITION_KEY = "day_position_key";
+    public static final String SELECTED_YEAR_KEY = "year_key";
 
     @BindView(R.id.moods_list)
     RecyclerView mMoodsRecyclerView;
-
     private DailyMoodAdapter mAdapter;
+    private AppDatabase mDb;
+    private List<DailyMood> mMoodsList;
+    private ArrayList<DailyMood> mYearList;
+    private int mYear;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // TODO: Create a + - button to change the value of a shared preference for the selected year
+        // First the year is the current year and the app will load data from this year.
 
-        Date time = new Date(new Date().getTime());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.US);
-        Log.v("DATE", simpleDateFormat.format(time));
-        SimpleDateFormat simpleYearFormat = new SimpleDateFormat("yyyy", Locale.US);
-        int year = Integer.parseInt(simpleYearFormat.format(time));
-        Log.v("YEAR", simpleYearFormat.format(time));
-        SimpleDateFormat simpleMonthFormat = new SimpleDateFormat("M", Locale.US);
-        Log.v("MONTH", simpleMonthFormat.format(time));
+        mDb = AppDatabase.getInstance(getApplicationContext());
+        mYear = Preferences.getSelectedYear(this);
+        setupViewModel();
 
-        int numberOfDays = 365;
-
-        // Calculate if it's a leap year
-        if (year % 4 == 0 && year % 100 != 0) {
-            Log.v("THIS IS", "A LEAP YEAR");
-            numberOfDays = 366;
-        } else if(year % 100 == 0 && year % 400 == 0) {
-            Log.v("THIS IS", "A LEAP YEAR");
-            numberOfDays = 366;
-        } else {
-            Log.v("THIS IS", "NOT A LEAP YEAR");
-        }
-
-        ArrayList<DailyMood> moodsList = new ArrayList<>();
+        mYearList = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
-            moodsList.add(null);
+            mYearList.add(null);
         }
 
-        moodsList.add(new DailyMood(0xFFFF0000));
-        moodsList.add(new DailyMood(0xFFFFC0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFFF00CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFFFC000));//, null, null));
-        moodsList.add(new DailyMood(0xFF115588));//, null, null));
-        moodsList.add(new DailyMood(0xFF4466AA));//, null, null));
-        moodsList.add(new DailyMood(0xFF99C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF5656BB));//, null, null));
-        moodsList.add(new DailyMood(0xFF22C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF11C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF55C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFFF0000));
-        moodsList.add(new DailyMood(0xFFFFC0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFFF00CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFFFC000));//, null, null));
-        moodsList.add(new DailyMood(0xFF115588));//, null, null));
-        moodsList.add(new DailyMood(0xFF4466AA));//, null, null));
-        moodsList.add(new DailyMood(0xFF99C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFCCC0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF22C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF11C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF55C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFFF0000));
-        moodsList.add(new DailyMood(0xFFFFC0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF00C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFFF00CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFFFC000));//, null, null));
-        moodsList.add(new DailyMood(0xFF115588));//, null, null));
-        moodsList.add(new DailyMood(0xFF4466AA));//, null, null));
-        moodsList.add(new DailyMood(0xFF99C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFFCCC0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF22C0CB));//, null, null));
-        moodsList.add(new DailyMood(0xFF11C0CB));//, null, null));
+        mYearList.add(new DailyMood(0xFFFF0000));
+        mYearList.add(new DailyMood(0xFFFFC0CB));
+        mYearList.add(new DailyMood(0xFF00C0CB));
+        mYearList.add(new DailyMood(0xFFFF00CB));
+        mYearList.add(new DailyMood(0xFFFFC000));
+        mYearList.add(new DailyMood(0xFF115588));
 
-        int currentSize = moodsList.size();
+        int currentSize = mYearList.size();
+
         for (int i = 0; i < 416 - currentSize; i++) {
-            moodsList.add(null);
+            if (i == 344) {
+                mYearList.add(new DailyMood(0xFF11C0CB));
+            } else {
+                mYearList.add(null);
+            }
         }
 
         mMoodsRecyclerView.setLayoutManager(new GridLayoutManager(this, 13));
-        mMoodsRecyclerView.setNestedScrollingEnabled(false);
-        mMoodsRecyclerView.setHasFixedSize(false);
+        mMoodsRecyclerView.setHasFixedSize(true);
         mAdapter = new DailyMoodAdapter(this, this);
         mMoodsRecyclerView.setAdapter(mAdapter);
-        mAdapter.setDailyMoods(moodsList);
+        mAdapter.setDailyMoods(mYearList);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -175,7 +133,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -193,21 +151,37 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
     public void onItemClickListener(int dailyMoodId, int position) {
+        Intent moodDetailsIntent = new Intent(MainActivity.this, TodayActivity.class);
         if (dailyMoodId != -1) {
-            Intent moodDetailsIntent = new Intent(MainActivity.this, TodayActivity.class);
             moodDetailsIntent.putExtra(DAILY_MOOD_ID_KEY, dailyMoodId);
-            startActivity(moodDetailsIntent);
-        } else {
-            Intent moodDetailsIntent = new Intent(MainActivity.this, TodayActivity.class);
-            moodDetailsIntent.putExtra(DAY_POSITION_KEY, position);
-            startActivity(moodDetailsIntent);
+        }
+        moodDetailsIntent.putExtra(SELECTED_DAY_POSITION_KEY, position);
+        moodDetailsIntent.putExtra(SELECTED_YEAR_KEY, mYear);
+        startActivity(moodDetailsIntent);
+    }
+
+    private void setupViewModel() {
+        YearViewModelFactory factory = new YearViewModelFactory(mDb, mYear);
+        final YearViewModel viewModel = ViewModelProviders.of(this, factory).get(YearViewModel.class);
+        viewModel.getYearMoods().observe(this, new Observer<List<DailyMood>>() {
+            @Override
+            public void onChanged(@Nullable List<DailyMood> moodsList) {
+                mMoodsList = moodsList;
+                mAdapter.setDailyMoods(moodsList);
+            }
+        });
+    }
+
+    private void initYear() {
+        for (int i = 0; i < mMoodsList.size(); i++) {
+            mYearList.set(mMoodsList.get(i).getPosition(), mMoodsList.get(i).getFirstColor());
         }
     }
 }

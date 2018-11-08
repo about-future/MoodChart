@@ -1,8 +1,14 @@
 package com.aboutfuture.moodchart.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.aboutfuture.moodchart.R;
+import com.aboutfuture.moodchart.data.DailyMood;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class SpecialUtils {
     public static String getMonthInitial(Context context, int month) {
@@ -32,5 +38,29 @@ public class SpecialUtils {
             default:
                 return context.getString(R.string.month_initial_december);
         }
+    }
+
+    public static boolean isLeapYear(int year) {
+//        int year;
+//        if (mood != null) {
+//            year = mood.getYear();
+//        } else {
+//            year = getCurrentYear();
+//        }
+
+        // Calculate if it's a leap year
+        if (year % 4 == 0 && year % 100 != 0) {
+            return true;
+        } else if(year % 100 == 0 && year % 400 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static int getCurrentYear() {
+        Date time = new Date(new Date().getTime());
+        SimpleDateFormat simpleYearFormat = new SimpleDateFormat("yyyy", Locale.US);
+        return Integer.parseInt(simpleYearFormat.format(time));
     }
 }
