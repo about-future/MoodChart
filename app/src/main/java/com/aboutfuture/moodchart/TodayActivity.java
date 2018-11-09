@@ -10,6 +10,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,9 +65,9 @@ public class TodayActivity extends AppCompatActivity {
     @BindView(R.id.mood_12_label)
     TextView mMood12LabelTextView;
 
+//    @BindView(R.id.question_text_view)
+//    TextView mQuestionTextView;
 
-    @BindView(R.id.question_text_view)
-    TextView mQuestionTextView;
     @BindView(R.id.reset_selected_color)
     ImageView mResetColorImageView;
 
@@ -78,6 +79,15 @@ public class TodayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today);
+        Toolbar toolbar = findViewById(R.id.today_toolbar);
+        TextView mTitle = toolbar.findViewById(R.id.today_toolbar_title);
+        mTitle.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        setSupportActionBar(toolbar);
+        setTitle("");
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         ButterKnife.bind(this);
 
         if (savedInstanceState != null) {
@@ -154,13 +164,13 @@ public class TodayActivity extends AppCompatActivity {
         int day = mPosition / 13;
         int month = mPosition % 13;
 
-        setTitle(String.format(
-                getString(R.string.format_date),
-                SpecialUtils.getMonthName(this, month),
-                day,
-                Preferences.getSelectedYear(this)));
+//        setTitle(String.format(
+//                getString(R.string.format_date),
+//                SpecialUtils.getMonthName(this, month),
+//                day,
+//                Preferences.getSelectedYear(this)));
 
-        mQuestionTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        //mQuestionTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
         mMood1LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
         mMood2LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
         mMood3LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
