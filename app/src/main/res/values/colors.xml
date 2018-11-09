@@ -14,16 +14,16 @@
     <color name="colorFeatherGray">#10000000</color>
 
     <color name="mood_color_1">#FFFF0000</color>
-    <color name="mood_color_2">#FFFF0099</color>
+    <color name="mood_color_2">#FFFF20A0</color>
     <color name="mood_color_3">#FFBA0BB4</color>
     <color name="mood_color_4">#FF00FF00</color>
     <color name="mood_color_5">#FF088AF0</color>
     <color name="mood_color_6">#FFAEA031</color>
-    <color name="mood_color_7">#FF212121</color>
-    <color name="mood_color_8">#FF212121</color>
-    <color name="mood_color_9">#FF212121</color>
-    <color name="mood_color_10">#FF212121</color>
-    <color name="mood_color_11">#FF212121</color>
+    <color name="mood_color_7">#FF804DA0</color>
+    <color name="mood_color_8">#FF826253</color>
+    <color name="mood_color_9">#FFB0B0B0</color>
+    <color name="mood_color_10">#FFFFE949</color>
+    <color name="mood_color_11">#FFFF8300</color>
     <color name="mood_color_12">#FF212121</color>
 
     <color name="gold">#d8d33c</color>

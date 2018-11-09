@@ -12,8 +12,10 @@
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
 
-    <string name="format_date">Today, %s %d %d I felt&#8230;</string>
-    <string name="question">How do you feel today?</string>
+    <string name="reset_color_description">Reset color</string>
+
+    <string name="format_date">Today, %s %d %d</string>
+    <string name="question">How did you feel today?</string>
 
     <string name="month_initial_january">J</string>
     <string name="month_initial_february">F</string>
@@ -41,18 +43,18 @@
     <string name="november">November</string>
     <string name="december">December</string>
 
-    <string name="label_mood_1">Loved</string>
-    <string name="label_mood_2">Happy</string>
-    <string name="label_mood_3">Thankful</string>
-    <string name="label_mood_4">Productive / Successful</string>
-    <string name="label_mood_5">Relaxed</string>
-    <string name="label_mood_6">Fine</string>
-    <string name="label_mood_7">Bored</string>
-    <string name="label_mood_8">Lazy</string>
-    <string name="label_mood_9">Tired</string>
-    <string name="label_mood_10">Sad</string>
-    <string name="label_mood_11">Sick</string>
-    <string name="label_mood_12">Angry</string>
+    <string name="label_mood_1">loved</string>
+    <string name="label_mood_2">happy</string>
+    <string name="label_mood_3">thankful</string>
+    <string name="label_mood_4">productive</string>
+    <string name="label_mood_5">relaxed</string>
+    <string name="label_mood_6">fine</string>
+    <string name="label_mood_7">bored</string>
+    <string name="label_mood_8">lazy</string>
+    <string name="label_mood_9">tired</string>
+    <string name="label_mood_10">sad</string>
+    <string name="label_mood_11">sick</string>
+    <string name="label_mood_12">angry</string>
 
     <string name="pref_mood_1_color_key">mood_1</string>
     <string name="pref_mood_1_label_key">mood_1_label</string>

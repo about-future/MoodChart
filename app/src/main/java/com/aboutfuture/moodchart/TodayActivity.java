@@ -3,6 +3,7 @@ package com.aboutfuture.moodchart;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -31,21 +32,38 @@ import static com.aboutfuture.moodchart.MainActivity.SELECTED_DAY_POSITION_KEY;
 public class TodayActivity extends AppCompatActivity {
     private static final String IS_CLEAR_BUTTON_VISIBLE_KEY = "clear_button_key";
     private static final String SELECTED_FIRST_COLOR_KEY = "first_color_key";
+    private static final String MOOD_ID_KEY = "mood_id_key";
     private static final int DEFAULT_VALUE = -1;
     private int mMoodId = DEFAULT_VALUE;
     private int mPosition = DEFAULT_VALUE;
 
     @BindView(R.id.selected_mood_color_view)
     View mSelectedColorView;
-    @BindView(R.id.mood_1_layout)
-    ConstraintLayout mMood1Layout;
-    @BindView(R.id.mood_2_layout)
-    ConstraintLayout mMood2Layout;
+    @BindView(R.id.mood_1_label)
+    TextView mMood1LabelTextView;
+    @BindView(R.id.mood_2_label)
+    TextView mMood2LabelTextView;
+    @BindView(R.id.mood_3_label)
+    TextView mMood3LabelTextView;
+    @BindView(R.id.mood_4_label)
+    TextView mMood4LabelTextView;
+    @BindView(R.id.mood_5_label)
+    TextView mMood5LabelTextView;
+    @BindView(R.id.mood_6_label)
+    TextView mMood6LabelTextView;
+    @BindView(R.id.mood_7_label)
+    TextView mMood7LabelTextView;
+    @BindView(R.id.mood_8_label)
+    TextView mMood8LabelTextView;
+    @BindView(R.id.mood_9_label)
+    TextView mMood9LabelTextView;
+    @BindView(R.id.mood_10_label)
+    TextView mMood10LabelTextView;
+    @BindView(R.id.mood_11_label)
+    TextView mMood11LabelTextView;
+    @BindView(R.id.mood_12_label)
+    TextView mMood12LabelTextView;
 
-    @BindView(R.id.position_text_view)
-    TextView positionTextView;
-    @BindView(R.id.daily_mood_id_text_view)
-    TextView dailyMoodIdTextView;
 
     @BindView(R.id.question_text_view)
     TextView mQuestionTextView;
@@ -64,23 +82,23 @@ public class TodayActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(IS_CLEAR_BUTTON_VISIBLE_KEY))
-                isClearButtonVisible = savedInstanceState.getBoolean(IS_CLEAR_BUTTON_VISIBLE_KEY, false);
+                isClearButtonVisible = savedInstanceState.getBoolean(IS_CLEAR_BUTTON_VISIBLE_KEY);
             if (savedInstanceState.containsKey(SELECTED_DAY_POSITION_KEY))
                 mPosition = savedInstanceState.getInt(SELECTED_DAY_POSITION_KEY);
-            if (savedInstanceState.containsKey(SELECTED_FIRST_COLOR_KEY))
+            if (savedInstanceState.containsKey(SELECTED_FIRST_COLOR_KEY)) {
                 mFirstColor = savedInstanceState.getInt(SELECTED_FIRST_COLOR_KEY);
+            }
+            mMoodId = savedInstanceState.getInt(MOOD_ID_KEY);
         }
 
         mDb = AppDatabase.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
-        if (intent != null) {
-            if (intent.hasExtra(SELECTED_DAY_POSITION_KEY)) {
-                mPosition = intent.getIntExtra(SELECTED_DAY_POSITION_KEY, DEFAULT_VALUE);
-            }
+        if (intent != null && intent.hasExtra(SELECTED_DAY_POSITION_KEY)) {
+            mPosition = intent.getIntExtra(SELECTED_DAY_POSITION_KEY, DEFAULT_VALUE);
         }
 
-        if (mPosition != DEFAULT_VALUE) {
+        if (mPosition != DEFAULT_VALUE && mMoodId == DEFAULT_VALUE) {
             AddDailyMoodViewModelFactory factory = new AddDailyMoodViewModelFactory(
                     mDb,
                     mPosition,
@@ -89,12 +107,21 @@ public class TodayActivity extends AppCompatActivity {
             viewModel.getDailyMoodDetails().observe(this, new Observer<DailyMood>() {
                 @Override
                 public void onChanged(@Nullable DailyMood dailyMood) {
-                    populateUI(dailyMood);
+                    if (dailyMood != null) {
+                        mMoodId = dailyMood.getId();
+                        mFirstColor = dailyMood.getFirstColor();
+                        if (mFirstColor != 0) {
+                            setMoodColor(mSelectedColorView, mFirstColor);
+                            mResetColorImageView.setVisibility(View.VISIBLE);
+                            isClearButtonVisible = true;
+                        }
+                    }
                 }
             });
-        } else {
-            populateUI(null);
         }
+
+        populateUI();
+        setMoodColor(mSelectedColorView, mFirstColor);
 
         if (isClearButtonVisible) {
             mResetColorImageView.setVisibility(View.VISIBLE);
@@ -119,19 +146,11 @@ public class TodayActivity extends AppCompatActivity {
         outState.putBoolean(IS_CLEAR_BUTTON_VISIBLE_KEY, isClearButtonVisible);
         outState.putInt(SELECTED_DAY_POSITION_KEY, mPosition);
         outState.putInt(SELECTED_FIRST_COLOR_KEY, mFirstColor);
+        outState.putInt(MOOD_ID_KEY, mMoodId);
     }
 
     // Set default background colors, labels and click listeners for each mood option
-    private void populateUI(DailyMood dailyMood) {
-        if (dailyMood != null) {
-            setMoodColor(mSelectedColorView, dailyMood.getFirstColor());
-            mMoodId = dailyMood.getId();
-//            mResetColorImageView.setVisibility(View.VISIBLE);
-//            isClearButtonVisible = true;
-        } else {
-            setMoodColor(mSelectedColorView, mFirstColor);
-        }
-
+    private void populateUI() {
         int day = mPosition / 13;
         int month = mPosition % 13;
 
@@ -141,44 +160,93 @@ public class TodayActivity extends AppCompatActivity {
                 day,
                 Preferences.getSelectedYear(this)));
 
-        mQuestionTextView.setText(getString(R.string.question));
+        mQuestionTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood1LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood2LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood3LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood4LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood5LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood6LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood7LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood8LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood9LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood10LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood11LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mMood12LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
 
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_1_layout),
                 findViewById(R.id.mood_1),
-                (TextView) findViewById(R.id.mood_1_label),
+                mMood1LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_1_label_key), getString(R.string.label_mood_1)),
                 Preferences.getMoodColor(this, getString(R.string.pref_mood_1_color_key), ContextCompat.getColor(this, R.color.mood_color_1)));
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_2_layout),
                 findViewById(R.id.mood_2),
-                (TextView) findViewById(R.id.mood_2_label),
+                mMood2LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_2_label_key), getString(R.string.label_mood_2)),
                 Preferences.getMoodColor(this, getString(R.string.pref_mood_2_color_key), ContextCompat.getColor(this, R.color.mood_color_2)));
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_3_layout),
                 findViewById(R.id.mood_3),
-                (TextView) findViewById(R.id.mood_3_label),
+                mMood3LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_3_label_key), getString(R.string.label_mood_3)),
                 Preferences.getMoodColor(this, getString(R.string.pref_mood_3_color_key), ContextCompat.getColor(this, R.color.mood_color_3)));
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_4_layout),
                 findViewById(R.id.mood_4),
-                (TextView) findViewById(R.id.mood_4_label),
+                mMood4LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_4_label_key), getString(R.string.label_mood_4)),
                 Preferences.getMoodColor(this, getString(R.string.pref_mood_4_color_key), ContextCompat.getColor(this, R.color.mood_color_4)));
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_5_layout),
                 findViewById(R.id.mood_5),
-                (TextView) findViewById(R.id.mood_5_label),
+                mMood5LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_5_label_key), getString(R.string.label_mood_5)),
                 Preferences.getMoodColor(this, getString(R.string.pref_mood_5_color_key), ContextCompat.getColor(this, R.color.mood_color_5)));
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_6_layout),
                 findViewById(R.id.mood_6),
-                (TextView) findViewById(R.id.mood_6_label),
+                mMood6LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_6_label_key), getString(R.string.label_mood_6)),
                 Preferences.getMoodColor(this, getString(R.string.pref_mood_6_color_key), ContextCompat.getColor(this, R.color.mood_color_6)));
+
+        setMoodOption(
+                (ConstraintLayout) findViewById(R.id.mood_7_layout),
+                findViewById(R.id.mood_7),
+                mMood7LabelTextView,
+                Preferences.getMoodLabel(this, getString(R.string.pref_mood_7_label_key), getString(R.string.label_mood_7)),
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_7_color_key), ContextCompat.getColor(this, R.color.mood_color_7)));
+        setMoodOption(
+                (ConstraintLayout) findViewById(R.id.mood_8_layout),
+                findViewById(R.id.mood_8),
+                mMood8LabelTextView,
+                Preferences.getMoodLabel(this, getString(R.string.pref_mood_8_label_key), getString(R.string.label_mood_8)),
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_8_color_key), ContextCompat.getColor(this, R.color.mood_color_8)));
+        setMoodOption(
+                (ConstraintLayout) findViewById(R.id.mood_9_layout),
+                findViewById(R.id.mood_9),
+                mMood9LabelTextView,
+                Preferences.getMoodLabel(this, getString(R.string.pref_mood_9_label_key), getString(R.string.label_mood_9)),
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_9_color_key), ContextCompat.getColor(this, R.color.mood_color_9)));
+        setMoodOption(
+                (ConstraintLayout) findViewById(R.id.mood_10_layout),
+                findViewById(R.id.mood_10),
+                mMood10LabelTextView,
+                Preferences.getMoodLabel(this, getString(R.string.pref_mood_10_label_key), getString(R.string.label_mood_10)),
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_10_color_key), ContextCompat.getColor(this, R.color.mood_color_10)));
+        setMoodOption(
+                (ConstraintLayout) findViewById(R.id.mood_11_layout),
+                findViewById(R.id.mood_11),
+                mMood11LabelTextView,
+                Preferences.getMoodLabel(this, getString(R.string.pref_mood_11_label_key), getString(R.string.label_mood_11)),
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_11_color_key), ContextCompat.getColor(this, R.color.mood_color_11)));
+        setMoodOption(
+                (ConstraintLayout) findViewById(R.id.mood_12_layout),
+                findViewById(R.id.mood_12),
+                mMood12LabelTextView,
+                Preferences.getMoodLabel(this, getString(R.string.pref_mood_12_label_key), getString(R.string.label_mood_12)),
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_12_color_key), ContextCompat.getColor(this, R.color.mood_color_12)));
     }
 
     private void setMoodOption(ConstraintLayout layout, View view, TextView textView, String label, int color) {
@@ -193,6 +261,11 @@ public class TodayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setMoodColor(mSelectedColorView, color);
                 mFirstColor = color;
+                if (mFirstColor == 0xFF212121) {
+                    mResetColorImageView.setColorFilter(0xFFFFFFFF);
+                } else {
+                    mResetColorImageView.setColorFilter(0xFF000000);
+                }
                 mResetColorImageView.setVisibility(View.VISIBLE);
                 isClearButtonVisible = true;
             }
@@ -214,20 +287,6 @@ public class TodayActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_today_mood, menu);
         return true;
     }
-
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        super.onPrepareOptionsMenu(menu);
-//        // If this is a new contact, hide the "Delete" menu item
-//        if (mContactId == DEFAULT_CONTACT_ID) {
-//            MenuItem menuDelete = menu.findItem(R.id.action_delete);
-//            menuDelete.setVisible(false);
-//        } else {
-//            MenuItem menuImport = menu.findItem(R.id.action_import);
-//            menuImport.setVisible(false);
-//        }
-//        return true;
-//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

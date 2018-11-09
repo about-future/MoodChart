@@ -10,44 +10,57 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
         <TextView
             android:id="@+id/question_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:text="@string/question"
+            android:textSize="@dimen/question_font_size"
+            android:textColor="@color/colorBlack"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Today, September 8 2018 I felt..." />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/selected_mood_color_view"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_margin="@dimen/spacing"
-            android:background="@drawable/sqare_box"
+            android:background="@drawable/square_box"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/question_text_view" />
-        
+
         <ImageView
             android:id="@+id/reset_selected_color"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:tint="@color/colorBlack"
+            android:contentDescription="@string/reset_color_description"
             android:padding="@dimen/spacing"
+            android:tint="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="@id/selected_mood_color_view"
             app:layout_constraintEnd_toEndOf="@id/selected_mood_color_view"
             app:srcCompat="@drawable/ic_clear" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/mood_1_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing"
-            android:layout_marginTop="@dimen/spacing"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/spacing"
             android:background="@drawable/color_selector"
             android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/selected_mood_color_view">
 
@@ -55,20 +68,19 @@
                 android:id="@+id/mood_1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/sqare_box"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/square_box"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/mood_1_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing"
-                android:fontFamily="sans-serif"
                 android:text="@string/label_mood_1"
-                android:textSize="15sp"
+                android:textSize="@dimen/mood_label_font_size"
                 app:layout_constraintBottom_toBottomOf="@id/mood_1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mood_1"
                 app:layout_constraintTop_toTopOf="@id/mood_1" />
 
@@ -76,12 +88,14 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/mood_2_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing"
-            android:layout_marginTop="@dimen/half_spacing"
+            android:layout_marginTop="@dimen/quarter_spacing"
+            android:layout_marginEnd="@dimen/spacing"
             android:background="@drawable/color_selector"
             android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mood_1_layout">
 
@@ -89,20 +103,19 @@
                 android:id="@+id/mood_2"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/sqare_box"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/square_box"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/mood_2_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing"
-                android:fontFamily="sans-serif"
                 android:text="@string/label_mood_2"
-                android:textSize="15sp"
+                android:textSize="@dimen/mood_label_font_size"
                 app:layout_constraintBottom_toBottomOf="@id/mood_2"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mood_2"
                 app:layout_constraintTop_toTopOf="@id/mood_2" />
 
@@ -110,12 +123,14 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/mood_3_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing"
-            android:layout_marginTop="@dimen/half_spacing"
+            android:layout_marginTop="@dimen/quarter_spacing"
+            android:layout_marginEnd="@dimen/spacing"
             android:background="@drawable/color_selector"
             android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mood_2_layout">
 
@@ -123,20 +138,19 @@
                 android:id="@+id/mood_3"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/sqare_box"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/square_box"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/mood_3_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing"
-                android:fontFamily="sans-serif"
                 android:text="@string/label_mood_3"
-                android:textSize="15sp"
+                android:textSize="@dimen/mood_label_font_size"
                 app:layout_constraintBottom_toBottomOf="@id/mood_3"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mood_3"
                 app:layout_constraintTop_toTopOf="@id/mood_3" />
 
@@ -144,12 +158,14 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/mood_4_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing"
-            android:layout_marginTop="@dimen/half_spacing"
+            android:layout_marginTop="@dimen/quarter_spacing"
+            android:layout_marginEnd="@dimen/spacing"
             android:background="@drawable/color_selector"
             android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mood_3_layout">
 
@@ -157,20 +173,19 @@
                 android:id="@+id/mood_4"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/sqare_box"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/square_box"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/mood_4_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing"
-                android:fontFamily="sans-serif"
                 android:text="@string/label_mood_4"
-                android:textSize="15sp"
+                android:textSize="@dimen/mood_label_font_size"
                 app:layout_constraintBottom_toBottomOf="@id/mood_4"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mood_4"
                 app:layout_constraintTop_toTopOf="@id/mood_4" />
 
@@ -178,12 +193,14 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/mood_5_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing"
-            android:layout_marginTop="@dimen/half_spacing"
+            android:layout_marginTop="@dimen/quarter_spacing"
+            android:layout_marginEnd="@dimen/spacing"
             android:background="@drawable/color_selector"
             android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mood_4_layout">
 
@@ -191,20 +208,19 @@
                 android:id="@+id/mood_5"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/sqare_box"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/square_box"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/mood_5_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing"
-                android:fontFamily="sans-serif"
                 android:text="@string/label_mood_5"
-                android:textSize="15sp"
+                android:textSize="@dimen/mood_label_font_size"
                 app:layout_constraintBottom_toBottomOf="@id/mood_5"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mood_5"
                 app:layout_constraintTop_toTopOf="@id/mood_5" />
 
@@ -212,12 +228,14 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/mood_6_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing"
-            android:layout_marginTop="@dimen/half_spacing"
+            android:layout_marginTop="@dimen/quarter_spacing"
+            android:layout_marginEnd="@dimen/spacing"
             android:background="@drawable/color_selector"
             android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mood_5_layout">
 
@@ -225,41 +243,234 @@
                 android:id="@+id/mood_6"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/sqare_box"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/square_box"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/mood_6_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing"
-                android:fontFamily="sans-serif"
                 android:text="@string/label_mood_6"
-                android:textSize="15sp"
+                android:textSize="@dimen/mood_label_font_size"
                 app:layout_constraintBottom_toBottomOf="@id/mood_6"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/mood_6"
                 app:layout_constraintTop_toTopOf="@id/mood_6" />
 
         </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/position_text_view"
-            android:layout_width="wrap_content"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mood_7_layout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="@id/mood_6_layout"
-            app:layout_constraintTop_toBottomOf="@id/mood_6_layout"
-            tools:text="Test" />
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginEnd="@dimen/spacing"
+            android:background="@drawable/color_selector"
+            android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/mood_1_layout">
 
-        <TextView
-            android:id="@+id/daily_mood_id_text_view"
-            android:layout_width="wrap_content"
+            <View
+                android:id="@+id/mood_7"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/square_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mood_7_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing"
+                android:text="@string/label_mood_7"
+                android:textSize="@dimen/mood_label_font_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mood_7"
+                app:layout_constraintBottom_toBottomOf="@id/mood_7"
+                app:layout_constraintTop_toTopOf="@id/mood_7" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mood_8_layout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginEnd="@dimen/spacing"
+            android:background="@drawable/color_selector"
+            android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/mood_2_layout">
+
+            <View
+                android:id="@+id/mood_8"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/square_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mood_8_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing"
+                android:text="@string/label_mood_8"
+                android:textSize="@dimen/mood_label_font_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/mood_8"
+                app:layout_constraintStart_toEndOf="@id/mood_8"
+                app:layout_constraintTop_toTopOf="@id/mood_8" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mood_9_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginEnd="@dimen/spacing"
+            android:background="@drawable/color_selector"
+            android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/mood_3_layout">
+
+            <View
+                android:id="@+id/mood_9"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/square_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mood_9_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing"
+                android:text="@string/label_mood_9"
+                android:textSize="@dimen/mood_label_font_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mood_9"
+                app:layout_constraintBottom_toBottomOf="@id/mood_9"
+                app:layout_constraintTop_toTopOf="@id/mood_9" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mood_10_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginEnd="@dimen/spacing"
+            android:background="@drawable/color_selector"
+            android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/mood_4_layout">
+
+            <View
+                android:id="@+id/mood_10"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/square_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mood_10_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing"
+                android:text="@string/label_mood_10"
+                android:textSize="@dimen/mood_label_font_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/mood_10"
+                app:layout_constraintStart_toEndOf="@id/mood_10"
+                app:layout_constraintTop_toTopOf="@id/mood_10" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mood_11_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginEnd="@dimen/spacing"
+            android:background="@drawable/color_selector"
+            android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/mood_5_layout">
+
+            <View
+                android:id="@+id/mood_11"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/square_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mood_11_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing"
+                android:text="@string/label_mood_11"
+                android:textSize="@dimen/mood_label_font_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mood_11"
+                app:layout_constraintBottom_toBottomOf="@id/mood_11"
+                app:layout_constraintTop_toTopOf="@id/mood_11" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mood_12_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginEnd="@dimen/spacing"
+            android:background="@drawable/color_selector"
+            android:padding="@dimen/half_spacing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/mood_6_layout">
+
+            <View
+                android:id="@+id/mood_12"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/square_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mood_12_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing"
+                android:text="@string/label_mood_12"
+                android:textSize="@dimen/mood_label_font_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mood_12"
+                app:layout_constraintBottom_toBottomOf="@id/mood_12"
+                app:layout_constraintTop_toTopOf="@id/mood_12" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/position_text_view"
-            tools:text="Test" />
+            app:layout_constraintTop_toBottomOf="@id/mood_6_layout" />
 
     </android.support.constraint.ConstraintLayout>
 
