@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/settings_mood_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/settings_mood_1_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_1"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_1"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_1" />
+
+        <View
+            android:id="@+id/settings_mood_2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_1" />
+
+        <TextView
+            android:id="@+id/settings_mood_2_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_2"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_2"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_2" />
+
+        <View
+            android:id="@+id/settings_mood_3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_2" />
+
+        <TextView
+            android:id="@+id/settings_mood_3_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_3"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_3"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_3" />
+
+        <View
+            android:id="@+id/settings_mood_4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_3" />
+
+        <TextView
+            android:id="@+id/settings_mood_4_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_4"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_4"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_4" />
+
+        <View
+            android:id="@+id/settings_mood_5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_4" />
+
+        <TextView
+            android:id="@+id/settings_mood_5_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_5"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_5"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_5" />
+
+        <View
+            android:id="@+id/settings_mood_6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_5" />
+
+        <TextView
+            android:id="@+id/settings_mood_6_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_6"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_6"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_6" />
+
+        <View
+            android:id="@+id/settings_mood_7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_6" />
+
+        <TextView
+            android:id="@+id/settings_mood_7_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_7"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_7"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_7" />
+
+        <View
+            android:id="@+id/settings_mood_8"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_7" />
+
+        <TextView
+            android:id="@+id/settings_mood_8_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_8"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_8"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_8" />
+
+        <View
+            android:id="@+id/settings_mood_9"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_8" />
+
+        <TextView
+            android:id="@+id/settings_mood_9_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_9"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_9"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_9" />
+
+        <View
+            android:id="@+id/settings_mood_10"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_9" />
+
+        <TextView
+            android:id="@+id/settings_mood_10_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_10"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_10"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_10" />
+
+        <View
+            android:id="@+id/settings_mood_11"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_10" />
+
+        <TextView
+            android:id="@+id/settings_mood_11_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_11"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_11"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_11" />
+
+        <View
+            android:id="@+id/settings_mood_12"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_mood_11" />
+
+        <TextView
+            android:id="@+id/settings_mood_12_label"
+            style="@style/MoodLabel.Settings"
+            android:text="@string/label_mood_12"
+            app:layout_constraintBottom_toBottomOf="@id/settings_mood_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/settings_mood_12"
+            app:layout_constraintTop_toTopOf="@id/settings_mood_12" />
+
+        <!--<android.support.constraint.Guideline-->
+            <!--android:id="@+id/guideline"-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--app:layout_constraintGuide_percent="0.5" />-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_1_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--android:layout_marginTop="24dp"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_1"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_1_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_1"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_1"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_1"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_1" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_2_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/settings_mood_1_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_2"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_2_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_2"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_2"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_2"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_2" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_3_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/settings_mood_2_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_3"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_3_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_3"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_3"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_3"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_3" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_4_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/settings_mood_3_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_4"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_4_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_4"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_4"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_4"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_4" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_5_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/settings_mood_4_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_5"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_5_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_5"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_5"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_5"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_5" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_6_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/settings_mood_5_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_6"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_6_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_6"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_6"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_6"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_6" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_7_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintTop_toTopOf="@id/settings_mood_1_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_7"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_7_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_7"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_7"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_7"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_7" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_8_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintTop_toTopOf="@id/settings_mood_2_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_8"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_8_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_8"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_8"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_8"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_8" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_9_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintTop_toTopOf="@id/settings_mood_3_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_9"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_9_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_9"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_9"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_9"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_9" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_10_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintTop_toTopOf="@id/settings_mood_4_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_10"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_10_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_10"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_10"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_10"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_10" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--style="@style/MoodLayout"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintTop_toTopOf="@id/settings_mood_5_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_11"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_11_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_11"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_11"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_11"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_11" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/settings_mood_12_layout"-->
+            <!--style="@style/MoodLayout"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="@id/guideline"-->
+            <!--app:layout_constraintTop_toTopOf="@id/settings_mood_6_layout">-->
+
+            <!--<View-->
+                <!--android:id="@+id/settings_mood_12"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:background="@drawable/square_box"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/settings_mood_12_label"-->
+                <!--style="@style/MoodLabel"-->
+                <!--android:text="@string/label_mood_12"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/settings_mood_12"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@id/settings_mood_12"-->
+                <!--app:layout_constraintTop_toTopOf="@id/settings_mood_12" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginTop="@dimen/spacing"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/mood_6_layout" />-->
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

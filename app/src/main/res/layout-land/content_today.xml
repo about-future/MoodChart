@@ -55,8 +55,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="@dimen/spacing"
+        android:layout_marginStart="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/selected_mood_layout"
         app:layout_constraintTop_toTopOf="parent">
@@ -75,10 +74,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_1_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
+                style="@style/MoodLayout"
                 app:layout_constraintEnd_toStartOf="@id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -93,12 +89,8 @@
 
                 <TextView
                     android:id="@+id/mood_1_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_1"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_1"
@@ -108,11 +100,8 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_2_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/MoodLayout"
                 android:layout_marginTop="@dimen/quarter_spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
                 app:layout_constraintEnd_toStartOf="@id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mood_1_layout">
@@ -127,12 +116,8 @@
 
                 <TextView
                     android:id="@+id/mood_2_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_2"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_2"
@@ -142,11 +127,8 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_3_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/MoodLayout"
                 android:layout_marginTop="@dimen/quarter_spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
                 app:layout_constraintEnd_toStartOf="@id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mood_2_layout">
@@ -161,12 +143,8 @@
 
                 <TextView
                     android:id="@+id/mood_3_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_3"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_3"
@@ -176,11 +154,8 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_4_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/MoodLayout"
                 android:layout_marginTop="@dimen/quarter_spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
                 app:layout_constraintEnd_toStartOf="@id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mood_3_layout">
@@ -195,12 +170,8 @@
 
                 <TextView
                     android:id="@+id/mood_4_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_4"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_4"
@@ -210,11 +181,8 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_5_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/MoodLayout"
                 android:layout_marginTop="@dimen/quarter_spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
                 app:layout_constraintEnd_toStartOf="@id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mood_4_layout">
@@ -229,12 +197,8 @@
 
                 <TextView
                     android:id="@+id/mood_5_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_5"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_5"
@@ -244,11 +208,8 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_6_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/MoodLayout"
                 android:layout_marginTop="@dimen/quarter_spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
                 app:layout_constraintEnd_toStartOf="@id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mood_5_layout">
@@ -263,12 +224,8 @@
 
                 <TextView
                     android:id="@+id/mood_6_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_6"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_6"
@@ -278,11 +235,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_7_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
+                style="@style/MoodLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="@id/mood_1_layout">
@@ -297,12 +250,8 @@
 
                 <TextView
                     android:id="@+id/mood_7_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_7"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_7"
@@ -312,11 +261,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_8_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
+                style="@style/MoodLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="@id/mood_2_layout">
@@ -331,12 +276,8 @@
 
                 <TextView
                     android:id="@+id/mood_8_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_8"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_8"
@@ -346,11 +287,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_9_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
+                style="@style/MoodLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="@id/mood_3_layout">
@@ -365,12 +302,8 @@
 
                 <TextView
                     android:id="@+id/mood_9_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_9"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_9"
@@ -380,11 +313,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_10_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
+                style="@style/MoodLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="@id/mood_4_layout">
@@ -399,12 +328,8 @@
 
                 <TextView
                     android:id="@+id/mood_10_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_10"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_10"
@@ -414,11 +339,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_11_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
+                style="@style/MoodLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="@id/mood_5_layout">
@@ -433,12 +354,8 @@
 
                 <TextView
                     android:id="@+id/mood_11_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_11"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_11"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_11"
@@ -448,11 +365,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/mood_12_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing"
-                android:background="@drawable/color_selector"
-                android:padding="@dimen/half_spacing"
+                style="@style/MoodLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="@id/mood_6_layout">
@@ -467,12 +380,8 @@
 
                 <TextView
                     android:id="@+id/mood_12_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing"
-                    android:fontFamily="sans-serif"
+                    style="@style/MoodLabel"
                     android:text="@string/label_mood_12"
-                    android:textSize="@dimen/mood_label_font_size"
                     app:layout_constraintBottom_toBottomOf="@id/mood_12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/mood_12"

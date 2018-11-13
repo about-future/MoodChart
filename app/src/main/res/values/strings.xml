@@ -9,6 +9,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
+    <string name="action_pixels">Year in Pixels</string>
+    <string name="action_graphs">Mood Graphs</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
