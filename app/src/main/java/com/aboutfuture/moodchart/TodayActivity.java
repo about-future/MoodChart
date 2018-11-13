@@ -40,6 +40,8 @@ public class TodayActivity extends AppCompatActivity {
 
     @BindView(R.id.selected_mood_color_view)
     View mSelectedColorView;
+    @BindView(R.id.date_text_view)
+    TextView mDateTextView;
     @BindView(R.id.mood_1_label)
     TextView mMood1LabelTextView;
     @BindView(R.id.mood_2_label)
@@ -64,10 +66,6 @@ public class TodayActivity extends AppCompatActivity {
     TextView mMood11LabelTextView;
     @BindView(R.id.mood_12_label)
     TextView mMood12LabelTextView;
-
-//    @BindView(R.id.question_text_view)
-//    TextView mQuestionTextView;
-
     @BindView(R.id.reset_selected_color)
     ImageView mResetColorImageView;
 
@@ -164,25 +162,38 @@ public class TodayActivity extends AppCompatActivity {
         int day = mPosition / 13;
         int month = mPosition % 13;
 
-//        setTitle(String.format(
-//                getString(R.string.format_date),
-//                SpecialUtils.getMonthName(this, month),
-//                day,
-//                Preferences.getSelectedYear(this)));
+        String dayString = String.valueOf(day);
+        // TODO: see enumerations in android for st, nd and th
+        switch (day) {
+            case 1:
+                dayString = dayString.concat("st");
+                break;
+            case 2:
+                dayString = dayString.concat("nd");
+                break;
+            default:
+                dayString = dayString.concat("th");
+                break;
+        }
 
-        //mQuestionTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood1LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood2LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood3LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood4LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood5LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood6LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood7LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood8LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood9LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood10LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood11LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
-        mMood12LabelTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+        mDateTextView.setText(String.format(
+                getString(R.string.format_date),
+                SpecialUtils.getMonthName(this, month),
+                dayString,
+                Preferences.getSelectedYear(this)));
+
+        setTypefaceFont(mMood1LabelTextView);
+        setTypefaceFont(mMood2LabelTextView);
+        setTypefaceFont(mMood3LabelTextView);
+        setTypefaceFont(mMood4LabelTextView);
+        setTypefaceFont(mMood5LabelTextView);
+        setTypefaceFont(mMood6LabelTextView);
+        setTypefaceFont(mMood7LabelTextView);
+        setTypefaceFont(mMood8LabelTextView);
+        setTypefaceFont(mMood9LabelTextView);
+        setTypefaceFont(mMood10LabelTextView);
+        setTypefaceFont(mMood11LabelTextView);
+        setTypefaceFont(mMood12LabelTextView);
 
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_1_layout),
@@ -259,6 +270,10 @@ public class TodayActivity extends AppCompatActivity {
                 Preferences.getMoodColor(this, getString(R.string.pref_mood_12_color_key), ContextCompat.getColor(this, R.color.mood_color_12)));
     }
 
+    private void setTypefaceFont(TextView view) {
+        view.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+    }
+
     private void setMoodOption(ConstraintLayout layout, View view, TextView textView, String label, int color) {
         setMoodListener(layout, color);
         setMoodColor(view, color);
@@ -271,11 +286,14 @@ public class TodayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setMoodColor(mSelectedColorView, color);
                 mFirstColor = color;
-                if (mFirstColor == 0xFF212121) {
+                if (mFirstColor <= 0xFF212121) {
                     mResetColorImageView.setColorFilter(0xFFFFFFFF);
+                    mDateTextView.setTextColor(0xFFFFFFFF);
                 } else {
                     mResetColorImageView.setColorFilter(0xFF000000);
+                    mDateTextView.setTextColor(0xFF000000);
                 }
+                // Set ResetColor image as visible and isClearButtonVisible as true
                 mResetColorImageView.setVisibility(View.VISIBLE);
                 isClearButtonVisible = true;
             }

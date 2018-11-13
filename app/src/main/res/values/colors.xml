@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#b7b21b</color>  <!--D8D33C-->
-    <color name="colorPrimaryDark">#4A0067</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#940579</color>  <!--D8D33C-->
+    <color name="colorPrimaryDark">#733926</color>
+    <color name="colorAccent">#EA80FC</color>
 
     <color name="colorBlack">#FF000000</color>
     <color name="colorWhite">#FFFFFFFF</color>
@@ -25,7 +25,5 @@
     <color name="mood_color_10">#FFFFE949</color>
     <color name="mood_color_11">#FFFF8300</color>
     <color name="mood_color_12">#FF212121</color>
-
-    <color name="gold">#d8d33c</color>
 
 </resources>
