@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,113 +75,185 @@ public class SettingsFragment extends Fragment {
         setTypefaceFont(mMood12LabelTextView);
 
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_1),
+                rootView.findViewById(R.id.settings_mood_1_color_view),
+                rootView.findViewById(R.id.settings_mood_1_color),
                 getString(R.string.pref_mood_1_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_1_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_1)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_1_label_layout),
                 mMood1LabelTextView,
-                getString(R.string.pref_mood_1_label_key));
+                getString(R.string.pref_mood_1_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_1_label_key),
+                        getString(R.string.label_mood_1)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_2),
+                rootView.findViewById(R.id.settings_mood_2_color_view),
+                rootView.findViewById(R.id.settings_mood_2_color),
                 getString(R.string.pref_mood_2_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_2_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_2)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_2_label_layout),
                 mMood2LabelTextView,
-                getString(R.string.pref_mood_2_label_key));
+                getString(R.string.pref_mood_2_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_2_label_key),
+                        getString(R.string.label_mood_2)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_3),
+                rootView.findViewById(R.id.settings_mood_3_color_view),
+                rootView.findViewById(R.id.settings_mood_3_color),
                 getString(R.string.pref_mood_3_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_3_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_3)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_3_label_layout),
                 mMood3LabelTextView,
-                getString(R.string.pref_mood_3_label_key));
+                getString(R.string.pref_mood_3_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_3_label_key),
+                        getString(R.string.label_mood_3)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_4),
+                rootView.findViewById(R.id.settings_mood_4_color_view),
+                rootView.findViewById(R.id.settings_mood_4_color),
                 getString(R.string.pref_mood_4_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_4_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_4)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_4_label_layout),
                 mMood4LabelTextView,
-                getString(R.string.pref_mood_4_label_key));
+                getString(R.string.pref_mood_4_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_4_label_key),
+                        getString(R.string.label_mood_4)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_5),
+                rootView.findViewById(R.id.settings_mood_5_color_view),
+                rootView.findViewById(R.id.settings_mood_5_color),
                 getString(R.string.pref_mood_5_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_5_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_5)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_5_label_layout),
                 mMood5LabelTextView,
-                getString(R.string.pref_mood_5_label_key));
+                getString(R.string.pref_mood_5_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_5_label_key),
+                        getString(R.string.label_mood_5)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_6),
+                rootView.findViewById(R.id.settings_mood_6_color_view),
+                rootView.findViewById(R.id.settings_mood_6_color),
                 getString(R.string.pref_mood_6_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_6_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_6)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_6_label_layout),
                 mMood6LabelTextView,
-                getString(R.string.pref_mood_6_label_key));
+                getString(R.string.pref_mood_6_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_6_label_key),
+                        getString(R.string.label_mood_6)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_7),
+                rootView.findViewById(R.id.settings_mood_7_color_view),
+                rootView.findViewById(R.id.settings_mood_7_color),
                 getString(R.string.pref_mood_7_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_7_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_7)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_7_label_layout),
                 mMood7LabelTextView,
-                getString(R.string.pref_mood_7_label_key));
+                getString(R.string.pref_mood_7_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_7_label_key),
+                        getString(R.string.label_mood_7)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_8),
+                rootView.findViewById(R.id.settings_mood_8_color_view),
+                rootView.findViewById(R.id.settings_mood_8_color),
                 getString(R.string.pref_mood_8_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_8_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_8)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_8_label_layout),
                 mMood8LabelTextView,
-                getString(R.string.pref_mood_8_label_key));
+                getString(R.string.pref_mood_8_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_8_label_key),
+                        getString(R.string.label_mood_8)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_9),
+                rootView.findViewById(R.id.settings_mood_9_color_view),
+                rootView.findViewById(R.id.settings_mood_9_color),
                 getString(R.string.pref_mood_9_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_9_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_9)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_9_label_layout),
                 mMood9LabelTextView,
-                getString(R.string.pref_mood_9_label_key));
+                getString(R.string.pref_mood_9_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_9_label_key),
+                        getString(R.string.label_mood_9)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_10),
+                rootView.findViewById(R.id.settings_mood_10_color_view),
+                rootView.findViewById(R.id.settings_mood_10_color),
                 getString(R.string.pref_mood_10_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_10_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_10)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_10_label_layout),
                 mMood10LabelTextView,
-                getString(R.string.pref_mood_10_label_key));
+                getString(R.string.pref_mood_10_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_10_label_key),
+                        getString(R.string.label_mood_10)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_11),
+                rootView.findViewById(R.id.settings_mood_11_color_view),
+                rootView.findViewById(R.id.settings_mood_11_color),
                 getString(R.string.pref_mood_11_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_11_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_11)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_11_label_layout),
                 mMood11LabelTextView,
-                getString(R.string.pref_mood_11_label_key));
+                getString(R.string.pref_mood_11_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_11_label_key),
+                        getString(R.string.label_mood_11)));
         setMoodOption(
-                rootView.findViewById(R.id.settings_mood_12),
+                rootView.findViewById(R.id.settings_mood_12_color_view),
+                rootView.findViewById(R.id.settings_mood_12_color),
                 getString(R.string.pref_mood_12_color_key),
                 Preferences.getMoodColor(
                         getContext(),
                         getString(R.string.pref_mood_12_color_key),
                         ContextCompat.getColor(getContext(), R.color.mood_color_12)),
+                (LinearLayout) rootView.findViewById(R.id.settings_mood_12_label_layout),
                 mMood12LabelTextView,
-                getString(R.string.pref_mood_12_label_key));
+                getString(R.string.pref_mood_12_label_key),
+                Preferences.getMoodLabel(
+                        getContext(),
+                        getString(R.string.pref_mood_12_label_key),
+                        getString(R.string.label_mood_12)));
 
         return rootView;
     }
@@ -189,24 +262,19 @@ public class SettingsFragment extends Fragment {
         view.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
     }
 
-    private void setMoodOption(View colorView, String colorKey, int defaultColor, TextView labelView, String labelKey) {
-        String label = Preferences.getMoodLabel(
-                getContext(),
-                labelKey,
-                getString(R.string.label_mood_1));
-
-        setMoodColorListener(colorView, colorKey, defaultColor);
+    private void setMoodOption(View containerView, View colorView, String colorKey, int defaultColor, LinearLayout labelLayout, TextView labelView, String labelKey, String label) {
+        setMoodColorListener(containerView, colorView, colorKey, defaultColor);
         setMoodColor(colorView, defaultColor);
 
-        setMoodLabelListener(labelView, labelKey);
+        setMoodLabelListener(labelLayout, labelView, labelKey);
         setMoodLabel(labelView, label);
     }
 
-    private void setMoodColorListener(View colorView, final String key, final int color) {
-        colorView.setOnClickListener(new View.OnClickListener() {
+    private void setMoodColorListener(View containerView, final View colorView, final String key, final int color) {
+        containerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openColorPicker(view, key, color);
+                openColorPicker(colorView, key, color);
             }
         });
     }
@@ -220,8 +288,8 @@ public class SettingsFragment extends Fragment {
         textView.setText(label);
     }
 
-    private void setMoodLabelListener(final TextView textView, final String key) {
-        textView.setOnClickListener(new View.OnClickListener() {
+    private void setMoodLabelListener(LinearLayout layout, final TextView textView, final String key) {
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showUpdateMoodNameDialog(textView, key);
@@ -237,6 +305,11 @@ public class SettingsFragment extends Fragment {
         // Get the layout inflater
         LayoutInflater inflater = this.getLayoutInflater();
         final View changeMoodNameView = inflater.inflate(R.layout.dialog_change_mood_name, null);
+        // Set current name of selected mood as the text for the EditText
+        EditText editText = changeMoodNameView.findViewById(R.id.new_mood_name_edit_text);
+        editText.setText(textView.getText());
+        editText.setSelection(textView.getText().length());
+
         builder.setIcon(R.drawable.ic_edit);
         builder.setTitle(R.string.change_mood_name);
 

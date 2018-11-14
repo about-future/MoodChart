@@ -10,14 +10,14 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="action_pixels">Year in Pixels</string>
-    <string name="action_graphs">Mood Graphs</string>
+    <string name="action_chart">Mood Chart</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
 
-    <string name="change_mood_name">Change mood name</string>
+    <string name="change_mood_name">Rename Mood</string>
     <string name="invalid_name">Mood needs valid name.</string>
     <string name="new_mood_name">New mood name</string>
 
@@ -64,6 +64,19 @@
     <string name="label_mood_10">sad</string>
     <string name="label_mood_11">sick</string>
     <string name="label_mood_12">angry</string>
+
+    <string name="settings_hint_mood_1">Mood 1</string>
+    <string name="settings_hint_mood_2">Mood 2</string>
+    <string name="settings_hint_mood_3">Mood 3</string>
+    <string name="settings_hint_mood_4">Mood 4</string>
+    <string name="settings_hint_mood_5">Mood 5</string>
+    <string name="settings_hint_mood_6">Mood 6</string>
+    <string name="settings_hint_mood_7">Mood 7</string>
+    <string name="settings_hint_mood_8">Mood 8</string>
+    <string name="settings_hint_mood_9">Mood 9</string>
+    <string name="settings_hint_mood_10">Mood 10</string>
+    <string name="settings_hint_mood_11">Mood 11</string>
+    <string name="settings_hint_mood_12">Mood 12</string>
 
     <string name="pref_mood_1_color_key">mood_1</string>
     <string name="pref_mood_1_label_key">mood_1_label</string>

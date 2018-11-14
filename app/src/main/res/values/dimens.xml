@@ -12,5 +12,6 @@
 
     <dimen name="question_font_size">32sp</dimen>
     <dimen name="mood_label_font_size">24sp</dimen>
+    <dimen name="settings_mood_spacing">32dp</dimen>
 
 </resources>

@@ -61,7 +61,9 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
             if (SpecialUtils.isLeapYear(Preferences.getSelectedYear(mContext))) {
                 //TODO: code is repeating here
                 if (mDailyMoods.get(position) != null && mDailyMoods.get(position).getFirstColor() != 0) {
-                    holder.dayMoodTextView.setBackgroundColor(mDailyMoods.get(position).getFirstColor());
+                    holder.dayMoodTextView.setBackgroundColor(SpecialUtils.getColor(
+                            mContext,
+                            mDailyMoods.get(position).getFirstColor()));
                 } else {
                     holder.dayMoodTextView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
                 }
@@ -71,7 +73,9 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
         } else {
             //TODO: code is repeating here
             if (mDailyMoods.get(position) != null && mDailyMoods.get(position).getFirstColor() != 0) {
-                holder.dayMoodTextView.setBackgroundColor(mDailyMoods.get(position).getFirstColor());
+                holder.dayMoodTextView.setBackgroundColor(SpecialUtils.getColor(
+                        mContext,
+                        mDailyMoods.get(position).getFirstColor()));
             } else {
                 holder.dayMoodTextView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
             }
@@ -80,7 +84,7 @@ public class DailyMoodAdapter extends RecyclerView.Adapter<DailyMoodAdapter.View
 
     @Override
     public int getItemCount() {
-        return mDailyMoods != null ? mDailyMoods.size() : 0; //mMoods != null ? mMoods.length : 0;
+        return mDailyMoods != null ? mDailyMoods.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

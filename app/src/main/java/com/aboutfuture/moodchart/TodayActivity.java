@@ -70,7 +70,7 @@ public class TodayActivity extends AppCompatActivity {
     ImageView mResetColorImageView;
 
     private AppDatabase mDb;
-    private int mFirstColor = 0xFFFFFFFF;
+    private int mFirstColor = 0;
     private boolean isClearButtonVisible;
 
     @Override
@@ -119,7 +119,7 @@ public class TodayActivity extends AppCompatActivity {
                         mMoodId = dailyMood.getId();
                         mFirstColor = dailyMood.getFirstColor();
                         if (mFirstColor != 0) {
-                            setMoodColor(mSelectedColorView, mFirstColor);
+                            setMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mFirstColor));
                             mResetColorImageView.setVisibility(View.VISIBLE);
                             isClearButtonVisible = true;
                         }
@@ -129,7 +129,7 @@ public class TodayActivity extends AppCompatActivity {
         }
 
         populateUI();
-        setMoodColor(mSelectedColorView, mFirstColor);
+        setMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mFirstColor));
 
         if (isClearButtonVisible) {
             mResetColorImageView.setVisibility(View.VISIBLE);
@@ -200,93 +200,106 @@ public class TodayActivity extends AppCompatActivity {
                 findViewById(R.id.mood_1),
                 mMood1LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_1_label_key), getString(R.string.label_mood_1)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_1_color_key), ContextCompat.getColor(this, R.color.mood_color_1)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_1_color_key), ContextCompat.getColor(this, R.color.mood_color_1)),
+                1);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_2_layout),
                 findViewById(R.id.mood_2),
                 mMood2LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_2_label_key), getString(R.string.label_mood_2)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_2_color_key), ContextCompat.getColor(this, R.color.mood_color_2)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_2_color_key), ContextCompat.getColor(this, R.color.mood_color_2)),
+                2);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_3_layout),
                 findViewById(R.id.mood_3),
                 mMood3LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_3_label_key), getString(R.string.label_mood_3)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_3_color_key), ContextCompat.getColor(this, R.color.mood_color_3)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_3_color_key), ContextCompat.getColor(this, R.color.mood_color_3)),
+                3);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_4_layout),
                 findViewById(R.id.mood_4),
                 mMood4LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_4_label_key), getString(R.string.label_mood_4)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_4_color_key), ContextCompat.getColor(this, R.color.mood_color_4)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_4_color_key), ContextCompat.getColor(this, R.color.mood_color_4)),
+                4);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_5_layout),
                 findViewById(R.id.mood_5),
                 mMood5LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_5_label_key), getString(R.string.label_mood_5)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_5_color_key), ContextCompat.getColor(this, R.color.mood_color_5)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_5_color_key), ContextCompat.getColor(this, R.color.mood_color_5)),
+                5);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_6_layout),
                 findViewById(R.id.mood_6),
                 mMood6LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_6_label_key), getString(R.string.label_mood_6)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_6_color_key), ContextCompat.getColor(this, R.color.mood_color_6)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_6_color_key), ContextCompat.getColor(this, R.color.mood_color_6)),
+                6);
 
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_7_layout),
                 findViewById(R.id.mood_7),
                 mMood7LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_7_label_key), getString(R.string.label_mood_7)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_7_color_key), ContextCompat.getColor(this, R.color.mood_color_7)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_7_color_key), ContextCompat.getColor(this, R.color.mood_color_7)),
+                7);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_8_layout),
                 findViewById(R.id.mood_8),
                 mMood8LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_8_label_key), getString(R.string.label_mood_8)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_8_color_key), ContextCompat.getColor(this, R.color.mood_color_8)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_8_color_key), ContextCompat.getColor(this, R.color.mood_color_8)),
+                8);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_9_layout),
                 findViewById(R.id.mood_9),
                 mMood9LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_9_label_key), getString(R.string.label_mood_9)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_9_color_key), ContextCompat.getColor(this, R.color.mood_color_9)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_9_color_key), ContextCompat.getColor(this, R.color.mood_color_9)),
+                9);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_10_layout),
                 findViewById(R.id.mood_10),
                 mMood10LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_10_label_key), getString(R.string.label_mood_10)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_10_color_key), ContextCompat.getColor(this, R.color.mood_color_10)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_10_color_key), ContextCompat.getColor(this, R.color.mood_color_10)),
+                10);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_11_layout),
                 findViewById(R.id.mood_11),
                 mMood11LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_11_label_key), getString(R.string.label_mood_11)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_11_color_key), ContextCompat.getColor(this, R.color.mood_color_11)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_11_color_key), ContextCompat.getColor(this, R.color.mood_color_11)),
+                11);
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_12_layout),
                 findViewById(R.id.mood_12),
                 mMood12LabelTextView,
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_12_label_key), getString(R.string.label_mood_12)),
-                Preferences.getMoodColor(this, getString(R.string.pref_mood_12_color_key), ContextCompat.getColor(this, R.color.mood_color_12)));
+                Preferences.getMoodColor(this, getString(R.string.pref_mood_12_color_key), ContextCompat.getColor(this, R.color.mood_color_12)),
+                12);
     }
 
     private void setTypefaceFont(TextView view) {
         view.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
     }
 
-    private void setMoodOption(ConstraintLayout layout, View view, TextView textView, String label, int color) {
-        setMoodListener(layout, color);
+    private void setMoodOption(ConstraintLayout layout, View view, TextView textView, String label, int color, int moodId) {
+        setMoodListener(layout, color, moodId);
         setMoodColor(view, color);
         setMoodLabel(textView, label);
     }
 
-    private void setMoodListener(ConstraintLayout layout, final int color) {
+    private void setMoodListener(ConstraintLayout layout, final int color, final int moodId) {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setMoodColor(mSelectedColorView, color);
-                mFirstColor = color;
-                if (mFirstColor <= 0xFF212121) {
+                mFirstColor = moodId;
+                //TODO: set color interval
+                if (color == 0xFF212121 || color == 0xFF000000 || color == 0xFF111111) {
                     mResetColorImageView.setColorFilter(0xFFFFFFFF);
                     mDateTextView.setTextColor(0xFFFFFFFF);
                 } else {

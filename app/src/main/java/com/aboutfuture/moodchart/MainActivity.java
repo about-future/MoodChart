@@ -51,6 +51,13 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 mTitle.setText(getText(R.string.action_pixels));
                 break;
+            case 1:
+                GraphsFragment graphsFragment = new GraphsFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, graphsFragment)
+                        .commit();
+                mTitle.setText(getText(R.string.action_chart));
+                break;
             case 3:
                 SettingsFragment settingsFragment = new SettingsFragment();
                 getSupportFragmentManager().beginTransaction()
@@ -94,7 +101,12 @@ public class MainActivity extends AppCompatActivity
                 mNavId = 0;
             }
         } else if (id == R.id.nav_graphs) {
-
+            GraphsFragment newFragment = new GraphsFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, newFragment)
+                    .commit();
+            mTitle.setText(getText(R.string.action_chart));
+            mNavId = 1;
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_settings) {

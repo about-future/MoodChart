@@ -27,10 +27,35 @@
         <item name="android:maxLines">1</item>
     </style>
 
-    <style name="MoodLabel.Settings" parent="MoodLabel">
-        <item name="android:textSize">32sp</item>
+    <style name="MoodLabelSettings">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="MoodColor">
+        <item name="android:background">@drawable/square_box</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+    </style>
+
+    <style name="MoodColor.Settings">
+        <item name="android:background">@drawable/square_box</item>
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
         <item name="android:layout_marginStart">24dp</item>
         <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginTop">@dimen/settings_mood_spacing</item>
+    </style>
+
+    <style name="MoodDivider">
+        <item name="android:background">@color/colorLightGray</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginTop">@dimen/settings_mood_spacing</item>
+
     </style>
 
     <style name="MoodLayout">
@@ -40,6 +65,13 @@
         <item name="android:layout_marginEnd">@dimen/half_spacing</item>
         <item name="android:background">@drawable/color_selector</item>
         <item name="android:padding">@dimen/half_spacing</item>
+    </style>
+
+    <style name="MoodLayoutSettings">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_marginStart">@dimen/spacing</item>
+        <item name="android:layout_marginEnd">@dimen/spacing</item>
     </style>
 
 </resources>
