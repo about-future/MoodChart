@@ -2,10 +2,8 @@ package com.aboutfuture.moodchart.utils;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.aboutfuture.moodchart.R;
-import com.aboutfuture.moodchart.data.DailyMood;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -151,6 +149,126 @@ public class SpecialUtils {
                         ContextCompat.getColor(context, R.color.mood_color_12));
             default:
                 return 0xFFFFFFFF;
+        }
+    }
+
+    public static int[] getColors(Context context) {
+        int[] colors = new int[12];
+
+        colors[0] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_1_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_1));
+        colors[1] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_2_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_2));
+        colors[2] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_3_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_3));
+        colors[3] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_4_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_4));
+        colors[4] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_5_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_5));
+        colors[5] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_6_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_6));
+        colors[6] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_7_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_7));
+        colors[7] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_8_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_8));
+        colors[8] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_9_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_9));
+        colors[9] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_10_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_10));
+        colors[10] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_11_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_11));
+        colors[11] = Preferences.getMoodColor(
+                context,
+                context.getString(R.string.pref_mood_12_color_key),
+                ContextCompat.getColor(context, R.color.mood_color_12));
+
+        return colors;
+    }
+
+    public static String getMoodLabel(Context context, int moodId) {
+        switch (moodId) {
+            case 1:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_1_label_key),
+                        context.getString(R.string.label_mood_1));
+            case 2:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_2_label_key),
+                        context.getString(R.string.label_mood_2));
+            case 3:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_3_label_key),
+                        context.getString(R.string.label_mood_3));
+            case 4:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_4_label_key),
+                        context.getString(R.string.label_mood_4));
+            case 5:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_5_label_key),
+                        context.getString(R.string.label_mood_5));
+            case 6:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_6_label_key),
+                        context.getString(R.string.label_mood_6));
+            case 7:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_7_label_key),
+                        context.getString(R.string.label_mood_7));
+            case 8:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_8_label_key),
+                        context.getString(R.string.label_mood_8));
+            case 9:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_9_label_key),
+                        context.getString(R.string.label_mood_9));
+            case 10:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_10_label_key),
+                        context.getString(R.string.label_mood_10));
+            case 11:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_11_label_key),
+                        context.getString(R.string.label_mood_11));
+            default:
+                return Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_12_label_key),
+                        context.getString(R.string.label_mood_12));
         }
     }
 }

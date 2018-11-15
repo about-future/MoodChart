@@ -21,11 +21,17 @@ public interface MoodsDao {
     @Query("SELECT * FROM moods WHERE year = :year AND position = :position ORDER BY id ASC")
     LiveData<DailyMood> loadMoodDetails(int position, int year);
 
-    @Query("SELECT COUNT(*) FROM moods WHERE first_color = :moodId")
-    int countFirstColor(int moodId);
+    @Query("SELECT COUNT(*) FROM moods WHERE first_color = :moodId AND year = :year")
+    int countFirstColorInYear(int moodId, int year);
 
-    @Query("SELECT COUNT(*) FROM moods WHERE second_color = :moodId")
-    int countSecondColor(int moodId);
+    @Query("SELECT COUNT(*) FROM moods WHERE second_color = :moodId AND year = :year")
+    int countSecondColorInYear(int moodId, int year);
+
+    @Query("SELECT COUNT(*) FROM moods WHERE first_color = :moodId AND year = :year AND month = :month")
+    int countFirstColorInMonth(int moodId, int month, int year);
+
+    @Query("SELECT COUNT(*) FROM moods WHERE second_color = :moodId AND year = :year AND month = :month")
+    int countSecondColorInMonth(int moodId, int month, int year);
 
     /*
     @Query("SELECT COUNT(*) FROM moods WHERE year = :year")

@@ -55,7 +55,6 @@ public class YearFragment extends Fragment implements DailyMoodAdapter.ListItemC
         mDb = AppDatabase.getInstance(getContext());
 
         //TODO: determine if next year started of it's the same. If it's not, insert a new year in db and setYear in preferences
-
         // Check to see if this year was initialized already, if it was setup the viewmodel, otherwise
         // insert empty days for the entire year
         if (Preferences.checkSelectedYearInitializationState(getContext())) {
@@ -79,6 +78,7 @@ public class YearFragment extends Fragment implements DailyMoodAdapter.ListItemC
         for (int i = 0; i < 416; i++) {
             mEntireYearMoodsList.add(new DailyMood(
                     Preferences.getSelectedYear(getContext()),
+                    i % 13,
                     i,
                     0,
                     0));

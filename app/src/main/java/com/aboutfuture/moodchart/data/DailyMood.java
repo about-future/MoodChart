@@ -11,6 +11,8 @@ public class DailyMood {
     private int id;
     // Year of entry
     private int year;
+    // Year of entry
+    private int month;
     // Position in the year matrix of 13 cols x 32 rows
     private int position;
     @ColumnInfo(name = "first_color")
@@ -23,17 +25,19 @@ public class DailyMood {
         this.firstColor = firstColor;
     }
 
-    public DailyMood(int id, int year, int position, int firstColor, int secondColor) {
+    public DailyMood(int id, int year, int month, int position, int firstColor, int secondColor) {
         this.id = id;
         this.year = year;
+        this.month = month;
         this.position = position;
         this.firstColor = firstColor;
         this.secondColor = secondColor;
     }
 
     @Ignore
-    public DailyMood(int year, int position, int firstColor, int secondColor) {
+    public DailyMood(int year, int month, int position, int firstColor, int secondColor) {
         this.year = year;
+        this.month = month;
         this.position = position;
         this.firstColor = firstColor;
         this.secondColor = secondColor;
@@ -41,6 +45,7 @@ public class DailyMood {
 
     public int getId() { return id; }
     public int getYear() { return year; }
+    public int getMonth() { return month; }
     public int getPosition() { return position; }
     public int getFirstColor() {
         return firstColor;

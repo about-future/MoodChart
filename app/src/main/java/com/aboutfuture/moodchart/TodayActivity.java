@@ -344,6 +344,7 @@ public class TodayActivity extends AppCompatActivity {
     private void onSaveButtonClicked() {
         final DailyMood dailyMood = new DailyMood(
                 SpecialUtils.getCurrentYear(),
+                mPosition % 13,
                 mPosition,
                 mFirstColor,
                 0);
