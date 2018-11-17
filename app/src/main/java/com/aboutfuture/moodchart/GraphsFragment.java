@@ -16,7 +16,9 @@ import com.aboutfuture.moodchart.utils.Preferences;
 import com.aboutfuture.moodchart.utils.SpecialUtils;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -25,6 +27,9 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
@@ -117,7 +122,6 @@ public class GraphsFragment extends Fragment {
                 mMood5LineChart, mMood6LineChart, mMood7LineChart, mMood8LineChart,
                 mMood9LineChart, mMood10LineChart, mMood11LineChart, mMood12LineChart};
 
-        //TODO: Make this a pie chart
         mYearConclusionTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
 
         mColors = SpecialUtils.getColors(getContext());
@@ -137,7 +141,7 @@ public class GraphsFragment extends Fragment {
                 getString(R.string.november),
                 getString(R.string.december)};
 
-        countEachMoodForThisYear(year);
+        countEachMoodForThisYear(mBarChart, year);
         //countEachMoodInThisMonth(4, year);
         for (int i = 0; i < 12; i++) {
             views[i].setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
@@ -147,7 +151,7 @@ public class GraphsFragment extends Fragment {
         return rootView;
     }
 
-    private void countEachMoodForThisYear(final int year) {
+    private void countEachMoodForThisYear(final BarChart chart, final int year) {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
@@ -157,7 +161,7 @@ public class GraphsFragment extends Fragment {
                 }
 
                 if (getActivity() != null) {
-                    setBarChart(moods);
+                    setBarChart(chart, moods);
                     try {
                         mYearConclusionTextView.setText(getYearConclusion(moods, year));
                     } catch (Exception e) { /**/ }
@@ -165,19 +169,6 @@ public class GraphsFragment extends Fragment {
             }
         });
     }
-
-    //    private void countMoodsInThisMonth(final int month, final int year) {
-//        AppExecutors.getInstance().diskIO().execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                int[] monthlyMoods = new int[12];
-//                for (int i = 0; i < 12; i++) {
-//                    monthlyMoods[i] = mDb.moodsDao().countFirstColorInMonth(i + 1, month, year);
-//                }
-//                countMood
-//            }
-//        });
-//    }
 
     private void countMoodMonthByMonthForYear(final BarChart chart, final int moodId, final int year, final TextView view) {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
@@ -200,7 +191,30 @@ public class GraphsFragment extends Fragment {
         });
     }
 
-    private void setBarChart(int[] moods) {
+    private void setPieChart(PieChart chart, int[] moods) {
+        List<PieEntry> entries = new ArrayList<>();
+        for (int i = 0; i < moods.length; i++) {
+            entries.add(new PieEntry(moods[i], mMoodLabels[i]));
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "Year Moods");
+        dataSet.setColors(mColors);
+        dataSet.setSliceSpace(2);
+        dataSet.setValueTextSize(12);
+
+        Legend legend = chart.getLegend();
+        legend.setForm(Legend.LegendForm.CIRCLE);
+
+        PieData pieData = new PieData(dataSet);
+        chart.setData(pieData);
+        chart.setRotationEnabled(true);
+        chart.setHoleRadius(0);
+        chart.setTransparentCircleAlpha(0);
+        chart.setDrawEntryLabels(true);
+        chart.getDescription().setEnabled(false);
+    }
+
+    private void setBarChart(BarChart chart, int[] moods) {
         List<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < moods.length; i++) {
             entries.add(new BarEntry(i, moods[i]));
@@ -209,30 +223,30 @@ public class GraphsFragment extends Fragment {
         BarDataSet dataSet = new BarDataSet(entries, "Year Moods");
         dataSet.setColors(mColors);
 
-        XAxis xAxis = mBarChart.getXAxis();
+        XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
 
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return mMoodLabels[(int) value];
+                return mMonthsLabels[(int) value];
             }
         });
-        xAxis.setLabelRotationAngle(45f);
+        xAxis.setLabelRotationAngle(50f);
         xAxis.setLabelCount(12);
 
-        YAxis yAxisLeft = mBarChart.getAxisLeft();
+        YAxis yAxisLeft = chart.getAxisLeft();
         yAxisLeft.setDrawGridLines(false);
-        YAxis yAxisRight = mBarChart.getAxisRight();
+        YAxis yAxisRight = chart.getAxisRight();
         yAxisRight.setDrawGridLines(false);
 
         BarData barData = new BarData(dataSet);
-        mBarChart.setData(barData);
+        chart.setData(barData);
 
-        mBarChart.getDescription().setEnabled(false);
-        mBarChart.setDrawGridBackground(false);
-        mBarChart.setFitBars(true);
+        chart.getDescription().setEnabled(false);
+        chart.setDrawGridBackground(false);
+        chart.setFitBars(true);
     }
 
     private void setBarChart(BarChart chart, int moodId, int[] moodByMonth) {
@@ -269,7 +283,6 @@ public class GraphsFragment extends Fragment {
         chart.setDrawGridBackground(false);
         chart.setFitBars(true);
     }
-
 
     private void setLineChart(LineChart chart, int moodId, int[] moodByMonth) {
         List<Entry> entries = new ArrayList<>();

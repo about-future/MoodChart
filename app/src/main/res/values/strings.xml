@@ -51,6 +51,7 @@
     <string name="november">November</string>
     <string name="december">December</string>
 
+    <string name="label_year_moods">Year Moods</string>
     <string name="label_mood_1">loved</string>
     <string name="label_mood_2">happy</string>
     <string name="label_mood_3">thankful</string>
