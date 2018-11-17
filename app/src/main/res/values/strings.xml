@@ -105,7 +105,8 @@
     <string name="pref_selected_year_key">selected_year</string>
     <string name="pref_year_initialized_key">year_initialized</string>
 
-    <string name="format_year_conclusion">In %d, you\'ve been mostly %s (%d%% of the time)</string>
-    <string name="format_year_conclusion2">60% of this year, you\'ve been happy.</string>
+    <string name="format_year_conclusion">In %d, you\'ve been mostly %s\n(%d%% of the time)</string>
+    <string name="format_mood_conclusion_for_year">In %d, you\'ve been %s for a total of %d days.</string>
+    <string name="format_zero_mood_conclusion_for_year">In %d, you\'ve never been %s.</string>
 
 </resources>

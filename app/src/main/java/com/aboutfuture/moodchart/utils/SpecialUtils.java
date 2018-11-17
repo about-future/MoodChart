@@ -271,4 +271,75 @@ public class SpecialUtils {
                         context.getString(R.string.label_mood_12));
         }
     }
+
+    public static String[] getMoodLabels(Context context) {
+        String[] labels = new String[12];
+        labels[0] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_1_label_key),
+                        context.getString(R.string.label_mood_1));
+        labels[1] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_2_label_key),
+                        context.getString(R.string.label_mood_2));
+        labels[2] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_3_label_key),
+                        context.getString(R.string.label_mood_3));
+        labels[3] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_4_label_key),
+                        context.getString(R.string.label_mood_4));
+        labels[4] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_5_label_key),
+                        context.getString(R.string.label_mood_5));
+        labels[5] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_6_label_key),
+                        context.getString(R.string.label_mood_6));
+        labels[6] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_7_label_key),
+                        context.getString(R.string.label_mood_7));
+        labels[7] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_8_label_key),
+                        context.getString(R.string.label_mood_8));
+        labels[8] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_9_label_key),
+                        context.getString(R.string.label_mood_9));
+        labels[9] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_10_label_key),
+                        context.getString(R.string.label_mood_10));
+        labels[10] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_11_label_key),
+                        context.getString(R.string.label_mood_11));
+        labels[11] = Preferences.getMoodLabel(
+                        context,
+                        context.getString(R.string.pref_mood_12_label_key),
+                        context.getString(R.string.label_mood_12));
+        return labels;
+    }
+
+    public static String[] getMonthsNames(Context context) {
+        String[] months = new String[12];
+        months[0] = context.getString(R.string.january);
+        months[1] = context.getString(R.string.february);
+        months[2] = context.getString(R.string.march);
+        months[3] = context.getString(R.string.april);
+        months[4] = context.getString(R.string.may);
+        months[5] = context.getString(R.string.june);
+        months[6] = context.getString(R.string.july);
+        months[7] = context.getString(R.string.august);
+        months[8] = context.getString(R.string.september);
+        months[9] = context.getString(R.string.october);
+        months[10] = context.getString(R.string.november);
+        months[11] = context.getString(R.string.december);
+
+        return months;
+    }
 }
