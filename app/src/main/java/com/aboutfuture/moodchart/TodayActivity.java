@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.aboutfuture.moodchart.data.AppDatabase;
 import com.aboutfuture.moodchart.data.AppExecutors;
-import com.aboutfuture.moodchart.data.DailyMood;
+import com.aboutfuture.moodchart.data.Mood;
 import com.aboutfuture.moodchart.utils.Preferences;
 import com.aboutfuture.moodchart.utils.SpecialUtils;
 import com.aboutfuture.moodchart.viewmodel.AddDailyMoodViewModel;
@@ -112,12 +112,12 @@ public class TodayActivity extends AppCompatActivity {
                     mPosition,
                     SpecialUtils.getCurrentYear());
             final AddDailyMoodViewModel viewModel = ViewModelProviders.of(this, factory).get(AddDailyMoodViewModel.class);
-            viewModel.getDailyMoodDetails().observe(this, new Observer<DailyMood>() {
+            viewModel.getDailyMoodDetails().observe(this, new Observer<Mood>() {
                 @Override
-                public void onChanged(@Nullable DailyMood dailyMood) {
-                    if (dailyMood != null) {
-                        mMoodId = dailyMood.getId();
-                        mFirstColor = dailyMood.getFirstColor();
+                public void onChanged(@Nullable Mood mood) {
+                    if (mood != null) {
+                        mMoodId = mood.getId();
+                        mFirstColor = mood.getFirstColor();
                         if (mFirstColor != 0) {
                             setMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mFirstColor));
                             mResetColorImageView.setVisibility(View.VISIBLE);
@@ -342,7 +342,7 @@ public class TodayActivity extends AppCompatActivity {
     }
 
     private void onSaveButtonClicked() {
-        final DailyMood dailyMood = new DailyMood(
+        final Mood mood = new Mood(
                 SpecialUtils.getCurrentYear(),
                 mPosition % 13,
                 mPosition,
@@ -353,11 +353,11 @@ public class TodayActivity extends AppCompatActivity {
             public void run() {
                 if (mMoodId == DEFAULT_VALUE) {
                     // Insert new contact
-                    mDb.moodsDao().insertDailyMood(dailyMood);
+                    mDb.moodsDao().insertMood(mood);
                 } else {
                     // Update contact
-                    dailyMood.setId(mMoodId);
-                    mDb.moodsDao().updateDailyMood(dailyMood);
+                    mood.setId(mMoodId);
+                    mDb.moodsDao().updateMood(mood);
                 }
 
                 finish();

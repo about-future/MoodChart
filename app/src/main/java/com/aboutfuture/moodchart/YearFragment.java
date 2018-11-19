@@ -7,17 +7,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 import com.aboutfuture.moodchart.data.AppDatabase;
 import com.aboutfuture.moodchart.data.AppExecutors;
-import com.aboutfuture.moodchart.data.DailyMood;
-import com.aboutfuture.moodchart.data.DailyMoodAdapter;
+import com.aboutfuture.moodchart.data.Mood;
+import com.aboutfuture.moodchart.data.MoodsAdapter;
 import com.aboutfuture.moodchart.utils.Preferences;
+import com.aboutfuture.moodchart.utils.SpecialUtils;
 import com.aboutfuture.moodchart.viewmodel.YearViewModel;
 
 import java.util.ArrayList;
@@ -26,12 +27,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class YearFragment extends Fragment implements DailyMoodAdapter.ListItemClickListener {
+public class YearFragment extends Fragment {
     public static final String SELECTED_DAY_POSITION_KEY = "day_position_key";
 
     @BindView(R.id.moods_list)
-    RecyclerView mMoodsRecyclerView;
-    private DailyMoodAdapter mAdapter;
+    GridView mYearGridView;
+
+    private MoodsAdapter mAdapter;
     private AppDatabase mDb;
 
     public YearFragment() {}
@@ -47,10 +49,28 @@ public class YearFragment extends Fragment implements DailyMoodAdapter.ListItemC
         // TODO: Create a + - button to change the value of a shared preference for the selected year
         // First the year is the current year and the app will load data from this year.
 
-        mMoodsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 13));
-        mMoodsRecyclerView.setHasFixedSize(true);
-        mAdapter = new DailyMoodAdapter(getContext(), this);
-        mMoodsRecyclerView.setAdapter(mAdapter);
+        mAdapter = new MoodsAdapter(
+                getContext(),
+                SpecialUtils.getScreenDensity(getContext()),
+                SpecialUtils.isPortraitMode(getContext()));
+        mYearGridView.setAdapter(mAdapter);
+        mYearGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                // For all the positions that are not listed bellow or if position is 379 and
+                // it's a leap year, we set an intent
+                if (position > 12 && position % 13 != 0 && position != 392 && position != 405 &&
+                        position != 407 && position != 409 && position != 412 && position != 414) {
+                    if (position == 379) {
+                        if (SpecialUtils.isLeapYear(Preferences.getSelectedYear(getContext()))) {
+                            createIntent(position);
+                        }
+                    } else {
+                        createIntent(position);
+                    }
+                }
+            }
+        });
 
         mDb = AppDatabase.getInstance(getContext());
 
@@ -66,17 +86,16 @@ public class YearFragment extends Fragment implements DailyMoodAdapter.ListItemC
         return rootView;
     }
 
-    @Override
-    public void onItemClickListener(int position) {
+    private void createIntent(int position) {
         Intent moodDetailsIntent = new Intent(getContext(), TodayActivity.class);
         moodDetailsIntent.putExtra(SELECTED_DAY_POSITION_KEY, position);
         startActivity(moodDetailsIntent);
     }
 
     private void insertEmptyYear() {
-        final ArrayList<DailyMood> mEntireYearMoodsList = new ArrayList<>();
+        final ArrayList<Mood> mEntireYearMoodsList = new ArrayList<>();
         for (int i = 0; i < 416; i++) {
-            mEntireYearMoodsList.add(new DailyMood(
+            mEntireYearMoodsList.add(new Mood(
                     Preferences.getSelectedYear(getContext()),
                     i % 13,
                     i,
@@ -98,9 +117,9 @@ public class YearFragment extends Fragment implements DailyMoodAdapter.ListItemC
 
     private void setupViewModel() {
         YearViewModel yearViewModel = ViewModelProviders.of(this).get(YearViewModel.class);
-        yearViewModel.getAllYearMoods().observe(this, new Observer<List<DailyMood>>() {
+        yearViewModel.getAllYearMoods().observe(this, new Observer<List<Mood>>() {
             @Override
-            public void onChanged(@Nullable List<DailyMood> yearMoodsList) {
+            public void onChanged(@Nullable List<Mood> yearMoodsList) {
                 if (yearMoodsList != null) {
                     mAdapter.setMoods(yearMoodsList);
                     mAdapter.notifyDataSetChanged();

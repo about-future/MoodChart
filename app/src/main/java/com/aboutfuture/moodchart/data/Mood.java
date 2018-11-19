@@ -6,7 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "moods")
-public class DailyMood {
+public class Mood {
     @PrimaryKey(autoGenerate = true)
     private int id;
     // Year of entry
@@ -21,11 +21,11 @@ public class DailyMood {
     private int secondColor;
 
     @Ignore
-    public DailyMood(int firstColor) {
+    public Mood(int firstColor) {
         this.firstColor = firstColor;
     }
 
-    public DailyMood(int id, int year, int month, int position, int firstColor, int secondColor) {
+    public Mood(int id, int year, int month, int position, int firstColor, int secondColor) {
         this.id = id;
         this.year = year;
         this.month = month;
@@ -35,7 +35,7 @@ public class DailyMood {
     }
 
     @Ignore
-    public DailyMood(int year, int month, int position, int firstColor, int secondColor) {
+    public Mood(int year, int month, int position, int firstColor, int secondColor) {
         this.year = year;
         this.month = month;
         this.position = position;

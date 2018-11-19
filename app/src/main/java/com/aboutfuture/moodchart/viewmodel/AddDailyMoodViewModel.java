@@ -4,16 +4,16 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.aboutfuture.moodchart.data.AppDatabase;
-import com.aboutfuture.moodchart.data.DailyMood;
+import com.aboutfuture.moodchart.data.Mood;
 
 public class AddDailyMoodViewModel extends ViewModel {
-    private LiveData<DailyMood> dailyMood;
+    private LiveData<Mood> dailyMood;
 
     public AddDailyMoodViewModel(AppDatabase database, int position, int year) {
         dailyMood = database.moodsDao().loadMoodDetails(position, year);
     }
 
-    public LiveData<DailyMood> getDailyMoodDetails() {
+    public LiveData<Mood> getDailyMoodDetails() {
         return dailyMood;
     }
 }

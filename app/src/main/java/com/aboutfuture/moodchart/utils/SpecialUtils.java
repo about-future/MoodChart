@@ -1,7 +1,10 @@
 package com.aboutfuture.moodchart.utils;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import com.aboutfuture.moodchart.R;
 
@@ -341,5 +344,21 @@ public class SpecialUtils {
         months[11] = context.getString(R.string.december);
 
         return months;
+    }
+
+    public static float getScreenDensity(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager != null) windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+
+//        return new float[]{
+//                (float) displayMetrics.widthPixels,
+//                (float) displayMetrics.heightPixels,
+//                displayMetrics.density};
+        return displayMetrics.density;
+    }
+
+    public static boolean isPortraitMode(Context context) {
+        return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 }

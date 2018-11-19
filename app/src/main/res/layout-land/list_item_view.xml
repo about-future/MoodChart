@@ -16,4 +16,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="D" />
 
+    <!--<com.aboutfuture.moodchart.views.CellView-->
+        <!--android:id="@+id/mood_cell_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@drawable/item_selector"-->
+        <!--android:gravity="center"-->
+        <!--app:first_color="@android:color/transparent"-->
+        <!--app:second_color="#0000FF"-->
+        <!--tools:text="D"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
 </android.support.constraint.ConstraintLayout>
