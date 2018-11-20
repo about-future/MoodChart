@@ -3,22 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/moods_list"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
-        <!--android:padding="1dp"-->
-        <!--android:scrollbars="none" />-->
-
-    <!--<ListView-->
-        <!--android:id="@+id/moods_list"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
-        <!--android:padding="1dp"-->
-        <!--android:scrollbars="none" />-->
-
     <GridView
         android:id="@+id/moods_list"
         android:layout_width="match_parent"

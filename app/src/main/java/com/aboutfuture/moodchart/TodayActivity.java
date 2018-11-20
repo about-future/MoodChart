@@ -3,6 +3,7 @@ package com.aboutfuture.moodchart;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import com.aboutfuture.moodchart.utils.Preferences;
 import com.aboutfuture.moodchart.utils.SpecialUtils;
 import com.aboutfuture.moodchart.viewmodel.AddDailyMoodViewModel;
 import com.aboutfuture.moodchart.viewmodel.AddDailyMoodViewModelFactory;
+import com.aboutfuture.moodchart.views.CellView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,13 +35,14 @@ import static com.aboutfuture.moodchart.MainActivity.SELECTED_DAY_POSITION_KEY;
 public class TodayActivity extends AppCompatActivity {
     private static final String IS_CLEAR_BUTTON_VISIBLE_KEY = "clear_button_key";
     private static final String SELECTED_FIRST_COLOR_KEY = "first_color_key";
+    private static final String SELECTED_SECOND_COLOR_KEY = "second_color_key";
     private static final String MOOD_ID_KEY = "mood_id_key";
     private static final int DEFAULT_VALUE = -1;
     private int mMoodId = DEFAULT_VALUE;
     private int mPosition = DEFAULT_VALUE;
 
     @BindView(R.id.selected_mood_color_view)
-    View mSelectedColorView;
+    CellView mSelectedColorView;
     @BindView(R.id.date_text_view)
     TextView mDateTextView;
     @BindView(R.id.mood_1_label)
@@ -71,6 +74,7 @@ public class TodayActivity extends AppCompatActivity {
 
     private AppDatabase mDb;
     private int mFirstColor = 0;
+    private int mSecondColor = 0;
     private boolean isClearButtonVisible;
 
     @Override
@@ -93,9 +97,11 @@ public class TodayActivity extends AppCompatActivity {
                 isClearButtonVisible = savedInstanceState.getBoolean(IS_CLEAR_BUTTON_VISIBLE_KEY);
             if (savedInstanceState.containsKey(SELECTED_DAY_POSITION_KEY))
                 mPosition = savedInstanceState.getInt(SELECTED_DAY_POSITION_KEY);
-            if (savedInstanceState.containsKey(SELECTED_FIRST_COLOR_KEY)) {
+            if (savedInstanceState.containsKey(SELECTED_FIRST_COLOR_KEY))
                 mFirstColor = savedInstanceState.getInt(SELECTED_FIRST_COLOR_KEY);
-            }
+            if (savedInstanceState.containsKey(SELECTED_SECOND_COLOR_KEY))
+                mSecondColor = savedInstanceState.getInt(SELECTED_SECOND_COLOR_KEY);
+
             mMoodId = savedInstanceState.getInt(MOOD_ID_KEY);
         }
 
@@ -118,10 +124,16 @@ public class TodayActivity extends AppCompatActivity {
                     if (mood != null) {
                         mMoodId = mood.getId();
                         mFirstColor = mood.getFirstColor();
+                        mSecondColor = mood.getSecondColor();
                         if (mFirstColor != 0) {
-                            setMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mFirstColor));
+                            setFirstMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mFirstColor));
                             mResetColorImageView.setVisibility(View.VISIBLE);
                             isClearButtonVisible = true;
+                            if (mSecondColor != 0) {
+                                setSecondMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mSecondColor));
+                            } else {
+                                setSecondMoodColor(mSelectedColorView, Color.TRANSPARENT);
+                            }
                         }
                     }
                 }
@@ -129,7 +141,12 @@ public class TodayActivity extends AppCompatActivity {
         }
 
         populateUI();
-        setMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mFirstColor));
+        setFirstMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mFirstColor));
+        if (mSecondColor != 0) {
+            setSecondMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mSecondColor));
+        } else {
+            setSecondMoodColor(mSelectedColorView, Color.TRANSPARENT);
+        }
 
         if (isClearButtonVisible) {
             mResetColorImageView.setVisibility(View.VISIBLE);
@@ -140,8 +157,10 @@ public class TodayActivity extends AppCompatActivity {
         mResetColorImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setMoodColor(mSelectedColorView, 0xFFFFFFFF);
+                setFirstMoodColor(mSelectedColorView, Color.WHITE);
+                setSecondMoodColor(mSelectedColorView, Color.TRANSPARENT);
                 mFirstColor = 0;
+                mSecondColor = 0;
                 mResetColorImageView.setVisibility(View.GONE);
                 isClearButtonVisible = false;
             }
@@ -154,6 +173,7 @@ public class TodayActivity extends AppCompatActivity {
         outState.putBoolean(IS_CLEAR_BUTTON_VISIBLE_KEY, isClearButtonVisible);
         outState.putInt(SELECTED_DAY_POSITION_KEY, mPosition);
         outState.putInt(SELECTED_FIRST_COLOR_KEY, mFirstColor);
+        outState.putInt(SELECTED_SECOND_COLOR_KEY, mSecondColor);
         outState.putInt(MOOD_ID_KEY, mMoodId);
     }
 
@@ -287,28 +307,48 @@ public class TodayActivity extends AppCompatActivity {
     }
 
     private void setMoodOption(ConstraintLayout layout, View view, TextView textView, String label, int color, int moodId) {
-        setMoodListener(layout, color, moodId);
+        setMoodListeners(layout, color, moodId);
         setMoodColor(view, color);
         setMoodLabel(textView, label);
     }
 
-    private void setMoodListener(ConstraintLayout layout, final int color, final int moodId) {
+    private void setMoodListeners(ConstraintLayout layout, final int color, final int moodId) {
+        // Listener for the first color
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setMoodColor(mSelectedColorView, color);
+                setFirstMoodColor(mSelectedColorView, color);
                 mFirstColor = moodId;
-                //TODO: set color interval
-                if (color == 0xFF212121 || color == 0xFF000000 || color == 0xFF111111) {
-                    mResetColorImageView.setColorFilter(0xFFFFFFFF);
-                    mDateTextView.setTextColor(0xFFFFFFFF);
+
+                // If color is black or dark gray, set date text and X reset color button as white
+                if (color == 0xFF000000 || color == 0xFF111111 || color == 0xFF212121 || color == 0xFF333333) {
+                    mDateTextView.setTextColor(Color.WHITE);
                 } else {
-                    mResetColorImageView.setColorFilter(0xFF000000);
-                    mDateTextView.setTextColor(0xFF000000);
+                    // Otherwise, set it black
+                    mDateTextView.setTextColor(Color.BLACK);
                 }
                 // Set ResetColor image as visible and isClearButtonVisible as true
                 mResetColorImageView.setVisibility(View.VISIBLE);
                 isClearButtonVisible = true;
+            }
+        });
+
+        // Listener for the second color
+        layout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setSecondMoodColor(mSelectedColorView, color);
+                mSecondColor = moodId;
+
+                // If color is black or dark gray, set X reset color button as white
+                if (color == 0xFF000000 || color == 0xFF111111 || color == 0xFF212121 || color == 0xFF333333) {
+                    mResetColorImageView.setColorFilter(Color.WHITE);
+                } else {
+                    // Otherwise, set it black
+                    mResetColorImageView.setColorFilter(Color.BLACK);
+                }
+
+                return true;
             }
         });
     }
@@ -316,6 +356,14 @@ public class TodayActivity extends AppCompatActivity {
     private void setMoodColor(View view, int color) {
         GradientDrawable one = (GradientDrawable) view.getBackground().mutate();
         one.setColor(color);
+    }
+
+    private void setFirstMoodColor(CellView view, int color) {
+        view.setBackgroundColor(color);
+    }
+
+    private void setSecondMoodColor(CellView view, int color) {
+        view.setTriangleColor(color);
     }
 
     private void setMoodLabel(TextView textView, String label) {
@@ -342,12 +390,23 @@ public class TodayActivity extends AppCompatActivity {
     }
 
     private void onSaveButtonClicked() {
+        float moodValue = 0;
+        if (mFirstColor != 0) {
+            moodValue = 1;
+            if (mSecondColor != 0) {
+                moodValue = 0.5f;
+            }
+        } else {
+            moodValue = 0;
+        }
+        //TODO: add moodValue to DB to accurately calculate the real value of the first mood in a day. Necessary for graphs
+
         final Mood mood = new Mood(
                 SpecialUtils.getCurrentYear(),
                 mPosition % 13,
                 mPosition,
                 mFirstColor,
-                0);
+                mSecondColor);
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {

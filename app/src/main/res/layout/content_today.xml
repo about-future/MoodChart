@@ -20,12 +20,23 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <View
+            android:id="@+id/border_view"
+            android:layout_width="202dp"
+            android:layout_height="202dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintEnd_toEndOf="@id/selected_mood_color_view"
+            app:layout_constraintStart_toStartOf="@id/selected_mood_color_view"
+            app:layout_constraintTop_toTopOf="@id/selected_mood_color_view"
+            app:layout_constraintBottom_toBottomOf="@id/selected_mood_color_view" />
+
+        <com.aboutfuture.moodchart.views.CellView
             android:id="@+id/selected_mood_color_view"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_margin="@dimen/spacing"
             android:layout_marginTop="@dimen/spacing"
-            android:background="@drawable/square_box"
+            android:background="@android:color/white"
+            app:second_color="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +61,7 @@
             android:gravity="center"
             android:textColor="@color/colorBlack"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@id/selected_mood_color_view"
+            app:layout_constraintTop_toTopOf="@id/selected_mood_color_view"
             app:layout_constraintStart_toStartOf="@id/selected_mood_color_view"
             tools:text="September 30th 2018" />
 

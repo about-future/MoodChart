@@ -10,20 +10,23 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/selected_mood_layout"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="182dp"
+        android:layout_height="182dp"
         android:layout_marginStart="48dp"
+        android:background="@drawable/square_box"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <View
+        <com.aboutfuture.moodchart.views.CellView
             android:id="@+id/selected_mood_color_view"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:background="@drawable/square_box"
+            android:background="@android:color/white"
+            app:second_color="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -48,7 +51,7 @@
             android:textColor="@color/colorBlack"
             tools:text="September 30th 2018"
             app:layout_constraintStart_toStartOf="@id/selected_mood_color_view"
-            app:layout_constraintBottom_toBottomOf="@id/selected_mood_color_view" />
+            app:layout_constraintTop_toTopOf="@id/selected_mood_color_view" />
 
     </android.support.constraint.ConstraintLayout>
 

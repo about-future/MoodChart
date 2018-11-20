@@ -3,6 +3,7 @@ package com.aboutfuture.moodchart.data;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,38 +48,35 @@ public class MoodsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Mood mood = mMoods.get(position);
-        //TextView moodTextView;
         CellView moodCellView;
 
         if(convertView == null){
-            //moodTextView = new TextView(mContext);
             moodCellView = new CellView(mContext);
             if(mIsPortraitMode) {
-                //moodTextView.setHeight((int) (28 * mDensity));
                 moodCellView.setHeight((int) (28 * mDensity));
             } else {
-                //moodTextView.setHeight((int) (50 * mDensity));
                 moodCellView.setHeight((int) (50 * mDensity));
             }
-            //moodTextView.setGravity(Gravity.CENTER);
             moodCellView.setGravity(Gravity.CENTER);
         } else {
-            //moodTextView = (TextView) convertView;
             moodCellView = (CellView) convertView;
         }
 
         // Set text
         if (position == 0) {
-            //moodTextView.setText("");
+            // If position is 0, let the cell empty
             moodCellView.setText("");
         } else if (position <= 12) {
-            //moodTextView.setText(SpecialUtils.getMonthInitial(mContext, position));
+            // Otherwise, if position is between 1 and 12, set in each cell the initial of
+            // the corresponding month (i.e. 1 = J, 2 = F, 3 = M,...)
             moodCellView.setText(SpecialUtils.getMonthInitial(mContext, position));
         } else if (position % 13 == 0) {
-            //moodTextView.setText(String.valueOf(position / 13));
+            // Otherwise, each time the remainder of position divided into 13 is 0,
+            // set in that cell the quotient of the division, which represents the day of the month
+            // (i.e. 1, 2, 3,... 30, 31)
             moodCellView.setText(String.valueOf(position / 13));
         } else {
-            //moodTextView.setText("");
+            // Otherwise, the cell represents a day of the year and has no text, only colors
             moodCellView.setText("");
         }
 
@@ -86,46 +84,41 @@ public class MoodsAdapter extends BaseAdapter {
         if (position <= 12 || position % 13 == 0 ||
                 position == 392 || position == 405 || position == 407 ||
                 position == 409 || position == 412 || position == 414) {
-            //moodTextView.setBackgroundColor(0xFFFFFFFF);
-            moodCellView.setBackgroundColor(0xFFFFFFFF);
-            //moodCellView.setSecondColor(Color.TRANSPARENT);
+            moodCellView.setBackgroundColor(Color.WHITE);
+            moodCellView.setTriangleColor(Color.TRANSPARENT);
         } else if (position == 379) {
             if (SpecialUtils.isLeapYear(Preferences.getSelectedYear(mContext))) {
                 //TODO: code is repeating here
                 if (mood.getFirstColor() != 0) {
-                    //moodTextView.setBackgroundColor(SpecialUtils.getColor(mContext, mood.getFirstColor()));
                     moodCellView.setBackgroundColor(SpecialUtils.getColor(mContext, mood.getFirstColor()));
-                    // TODO: add if block
+                    if (mood.getSecondColor() != 0) {
+                        moodCellView.setTriangleColor(SpecialUtils.getColor(mContext, mood.getSecondColor()));
+                    } else {
+                        moodCellView.setTriangleColor(Color.TRANSPARENT);
+                    }
                 } else {
-                    //moodTextView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
                     moodCellView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
-                    //moodCellView.setSecondColor(Color.TRANSPARENT);
+                    moodCellView.setTriangleColor(Color.TRANSPARENT);
                 }
             } else {
-                //moodTextView.setBackgroundColor(0xFFFFFFFF);
-                moodCellView.setBackgroundColor(0xFFFFFFFF);
-                //moodCellView.setSecondColor(Color.TRANSPARENT);
+                moodCellView.setBackgroundColor(Color.WHITE);
+                moodCellView.setTriangleColor(Color.TRANSPARENT);
             }
         } else {
             //TODO: code is repeating here
-            moodCellView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
             if (mood.getFirstColor() != 0) {
-                //moodTextView.setBackgroundColor(SpecialUtils.getColor(mContext, mood.getFirstColor()));
-                //moodCellView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
                 moodCellView.setBackgroundColor(SpecialUtils.getColor(mContext, mood.getFirstColor()));
-//                if (mood.getSecondColor() != 0) {
-//                    moodCellView.setSecondColor(SpecialUtils.getColor(mContext, mood.getSecondColor()));
-//                } else {
-//                    moodCellView.setSecondColor(0x00FFFFFF);
-//                }
+                if (mood.getSecondColor() != 0) {
+                    moodCellView.setTriangleColor(SpecialUtils.getColor(mContext, mood.getSecondColor()));
+                } else {
+                    moodCellView.setTriangleColor(Color.TRANSPARENT);
+                }
             } else {
-                //moodTextView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
                 moodCellView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.item_selector));
-                //moodCellView.setSecondColor(Color.TRANSPARENT);
+                moodCellView.setTriangleColor(Color.TRANSPARENT);
             }
         }
 
-        //return moodTextView;
         return moodCellView;
     }
 
