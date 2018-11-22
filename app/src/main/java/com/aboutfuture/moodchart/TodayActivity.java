@@ -161,6 +161,8 @@ public class TodayActivity extends AppCompatActivity {
                 setSecondMoodColor(mSelectedColorView, Color.TRANSPARENT);
                 mFirstColor = 0;
                 mSecondColor = 0;
+                mDateTextView.setTextColor(Color.BLACK);
+                mResetColorImageView.setColorFilter(Color.BLACK);
                 mResetColorImageView.setVisibility(View.GONE);
                 isClearButtonVisible = false;
             }
@@ -182,14 +184,30 @@ public class TodayActivity extends AppCompatActivity {
         int day = mPosition / 13;
         int month = mPosition % 13;
 
+        // TODO: see enumerations/plurals in android for st, nd and th
+        // TODO: solve this case for other languages
         String dayString = String.valueOf(day);
-        // TODO: see enumerations in android for st, nd and th
         switch (day) {
             case 1:
                 dayString = dayString.concat("st");
                 break;
             case 2:
                 dayString = dayString.concat("nd");
+                break;
+            case 3:
+                dayString = dayString.concat("rd");
+                break;
+            case 21:
+                dayString = dayString.concat("st");
+                break;
+            case 22:
+                dayString = dayString.concat("nd");
+                break;
+            case 23:
+                dayString = dayString.concat("rd");
+                break;
+            case 31:
+                dayString = dayString.concat("st");
                 break;
             default:
                 dayString = dayString.concat("th");
@@ -407,6 +425,7 @@ public class TodayActivity extends AppCompatActivity {
                 mPosition,
                 mFirstColor,
                 mSecondColor);
+                // moodValue);
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {

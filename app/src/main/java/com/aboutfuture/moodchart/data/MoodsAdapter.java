@@ -81,10 +81,12 @@ public class MoodsAdapter extends BaseAdapter {
         }
 
         // Set background color
-        if (position <= 12 || position % 13 == 0 ||
-                position == 392 || position == 405 || position == 407 ||
-                position == 409 || position == 412 || position == 414) {
+        if (position <= 12 || position % 13 == 0) {
             moodCellView.setBackgroundColor(Color.WHITE);
+            moodCellView.setTriangleColor(Color.TRANSPARENT);
+        } else if (position == 392 || position == 405 || position == 407 ||
+                position == 409 || position == 412 || position == 414) {
+            moodCellView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorGray));//Color.DKGRAY);
             moodCellView.setTriangleColor(Color.TRANSPARENT);
         } else if (position == 379) {
             if (SpecialUtils.isLeapYear(Preferences.getSelectedYear(mContext))) {
@@ -101,7 +103,7 @@ public class MoodsAdapter extends BaseAdapter {
                     moodCellView.setTriangleColor(Color.TRANSPARENT);
                 }
             } else {
-                moodCellView.setBackgroundColor(Color.WHITE);
+                moodCellView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorGray));//Color.DKGRAY);
                 moodCellView.setTriangleColor(Color.TRANSPARENT);
             }
         } else {

@@ -1,4 +1,4 @@
-package com.aboutfuture.moodchart;
+package com.aboutfuture.moodchart.fragments;
 
 import android.content.DialogInterface;
 import android.graphics.Typeface;
@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aboutfuture.moodchart.R;
 import com.aboutfuture.moodchart.utils.Preferences;
 
 import butterknife.BindView;

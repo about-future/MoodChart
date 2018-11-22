@@ -12,6 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.aboutfuture.moodchart.fragments.GraphsFragment;
+import com.aboutfuture.moodchart.fragments.SettingsFragment;
+import com.aboutfuture.moodchart.fragments.YearFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -101,12 +105,14 @@ public class MainActivity extends AppCompatActivity
                 mNavId = 0;
             }
         } else if (id == R.id.nav_graphs) {
-            GraphsFragment newFragment = new GraphsFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, newFragment)
-                    .commit();
-            mTitle.setText(getText(R.string.action_chart));
-            mNavId = 1;
+            if (mNavId != 1) {
+                GraphsFragment newFragment = new GraphsFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, newFragment)
+                        .commit();
+                mTitle.setText(getText(R.string.action_chart));
+                mNavId = 1;
+            }
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_settings) {

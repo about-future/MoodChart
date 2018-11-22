@@ -1,4 +1,4 @@
-package com.aboutfuture.moodchart;
+package com.aboutfuture.moodchart.fragments;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.aboutfuture.moodchart.R;
 import com.aboutfuture.moodchart.data.AppDatabase;
 import com.aboutfuture.moodchart.data.AppExecutors;
 import com.aboutfuture.moodchart.utils.Preferences;

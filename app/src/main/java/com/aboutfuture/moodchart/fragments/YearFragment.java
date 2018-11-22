@@ -1,8 +1,9 @@
-package com.aboutfuture.moodchart;
+package com.aboutfuture.moodchart.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.aboutfuture.moodchart.MainActivity;
+import com.aboutfuture.moodchart.R;
+import com.aboutfuture.moodchart.TodayActivity;
 import com.aboutfuture.moodchart.data.AppDatabase;
 import com.aboutfuture.moodchart.data.AppExecutors;
 import com.aboutfuture.moodchart.data.Mood;
@@ -30,11 +36,18 @@ import butterknife.ButterKnife;
 public class YearFragment extends Fragment {
     public static final String SELECTED_DAY_POSITION_KEY = "day_position_key";
 
+    @BindView(R.id.next_year)
+    ImageView mNextYear;
+    @BindView(R.id.previous_year)
+    ImageView mPreviousYear;
+    @BindView(R.id.current_year_text_view)
+    TextView mCurrentYearTextView;
     @BindView(R.id.moods_list)
     GridView mYearGridView;
 
     private MoodsAdapter mAdapter;
     private AppDatabase mDb;
+    private int mCurrentYear;
 
     public YearFragment() {}
 
@@ -46,13 +59,56 @@ public class YearFragment extends Fragment {
         // Bind the views
         ButterKnife.bind(this, rootView);
 
-        // TODO: Create a + - button to change the value of a shared preference for the selected year
-        // First the year is the current year and the app will load data from this year.
+        // TODO: Check logic later
+        // Check if it's a new year or not and if it was initialised already
+//        if (SpecialUtils.getCurrentYear() != Preferences.getSelectedYear(getContext()) &&
+//                !Preferences.checkSelectedYearInitializationState(getContext())) {
+//            // Set the current year as selected year
+//            Preferences.setSelectedYear(getContext(), SpecialUtils.getCurrentYear());
+//
+//            // Insert an new year in the DB and set year as initialised so we don't create it again
+//            // insertEmptyYear();
+//        } else {
+//            // Otherwise, just setup ViewModel and populate the GridView with data
+//            //setupViewModel();
+//        }
+
+        mCurrentYear = Preferences.getSelectedYear(getContext());
+        mCurrentYearTextView.setText(String.valueOf(mCurrentYear));
+        mCurrentYearTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Norican-Regular.ttf"));
+
+        mPreviousYear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentYear -= 1;
+                mCurrentYearTextView.setText(String.valueOf(mCurrentYear));
+
+                // TODO: Check if mCurrentYear has data in DB, that means it was initialised already before
+                // If it has, just get data and setViewModel, otherwise:
+                // - initialize year and setSelectedYearInitializationState as true
+                // - set mCurrentYear as current year
+                // - reset mCurrentYearTextView text
+            }
+        });
+
+        mNextYear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentYear += 1;
+                mCurrentYearTextView.setText(String.valueOf(mCurrentYear));
+
+                // TODO: Check if mCurrentYear has data in DB, that means it was initialised already before
+                // If it has, just get data and setViewModel, otherwise:
+                // - initialize year and setSelectedYearInitializationState as true
+                // - set mCurrentYear as current year
+                // - reset mCurrentYearTextView text
+            }
+        });
 
         mAdapter = new MoodsAdapter(
                 getContext(),
-                SpecialUtils.getScreenDensity(getContext()),
-                SpecialUtils.isPortraitMode(getContext()));
+                SpecialUtils.getScreenDensity(getActivityCast()),
+                SpecialUtils.isPortraitMode(getActivityCast()));
         mYearGridView.setAdapter(mAdapter);
         mYearGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,6 +130,11 @@ public class YearFragment extends Fragment {
 
         mDb = AppDatabase.getInstance(getContext());
 
+        // TODO: Create a + - button to change the value of a shared preference for the selected year
+        // First the year is the current year and the app will load data from this year.
+
+
+
         //TODO: determine if next year started of it's the same. If it's not, insert a new year in db and setYear in preferences
         // Check to see if this year was initialized already, if it was setup the viewmodel, otherwise
         // insert empty days for the entire year
@@ -84,6 +145,10 @@ public class YearFragment extends Fragment {
         }
 
         return rootView;
+    }
+
+    public MainActivity getActivityCast() {
+        return (MainActivity) getActivity();
     }
 
     private void createIntent(int position) {
@@ -123,6 +188,7 @@ public class YearFragment extends Fragment {
                 if (yearMoodsList != null) {
                     mAdapter.setMoods(yearMoodsList);
                     mAdapter.notifyDataSetChanged();
+                    mYearGridView.setBackgroundColor(0xFF999999);
                 }
             }
         });

@@ -32,6 +32,9 @@ public interface MoodsDao {
     @Query("SELECT COUNT(*) FROM moods WHERE second_color = :moodId AND year = :year AND month = :month")
     int countSecondColorInMonth(int moodId, int month, int year);
 
+    @Query("SELECT COUNT(*) FROM moods WHERE year = :year")
+    int countMoodsInYear(int year);
+
     /*
     @Query("SELECT COUNT(*) FROM moods WHERE year = :year")
     int countMoods(int year); */

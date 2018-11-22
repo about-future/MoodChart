@@ -9,10 +9,13 @@
     <color name="colorTransparentWhite">#00FFFFFF</color>
     <color name="colorTranslucentWhite">#60FFFFFF</color>
     <color name="colorTranslucentBlack">#20000000</color>
-    <color name="colorGray">#FF333333</color>
-    <color name="colorLightGray">#60000000</color>
-    <color name="colorLightestGray">#40000000</color>
-    <color name="colorFeatherGray">#10000000</color>
+    <color name="colorGray">#FF666666</color>
+    <!--<color name="colorLightGray">#60000000</color>-->
+    <color name="colorLightGray">#FF999999</color>
+    <!--<color name="colorLightestGray">#40000000</color>-->
+    <color name="colorLightestGray">#FFC0C0C0</color>
+    <!--<color name="colorFeatherGray2">#10000000</color>-->
+    <color name="colorFeatherGray">#FFEFEFEF</color>
 
     <color name="mood_color_1">#FFFF0000</color>
     <color name="mood_color_2">#FFFF20A0</color>
