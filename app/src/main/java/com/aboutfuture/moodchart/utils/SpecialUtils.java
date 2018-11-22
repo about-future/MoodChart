@@ -3,6 +3,7 @@ package com.aboutfuture.moodchart.utils;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.ColorUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -360,5 +361,9 @@ public class SpecialUtils {
 
     public static boolean isPortraitMode(Context context) {
         return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    }
+
+    public static boolean isDarkColor(int color) {
+        return ColorUtils.calculateLuminance(color) < 0.3;
     }
 }
