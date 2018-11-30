@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,64 +9,65 @@
     tools:showIn="@layout/activity_today">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/selected_mood_layout"
-        android:layout_width="182dp"
-        android:layout_height="182dp"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/square_box"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.aboutfuture.moodchart.views.CellView
-            android:id="@+id/selected_mood_color_view"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:background="@android:color/white"
-            app:second_color="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/reset_selected_color"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:contentDescription="@string/reset_color_description"
-            android:padding="@dimen/spacing"
-            android:tint="@color/colorBlack"
-            app:layout_constraintBottom_toBottomOf="@id/selected_mood_color_view"
-            app:layout_constraintEnd_toEndOf="@id/selected_mood_color_view"
-            app:srcCompat="@drawable/ic_clear" />
-
-        <TextView
-            android:id="@+id/date_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="@dimen/half_spacing"
-            android:textSize="12sp"
-            android:fontFamily="serif"
-            android:textColor="@color/colorBlack"
-            tools:text="September 30th 2018"
-            app:layout_constraintStart_toStartOf="@id/selected_mood_color_view"
-            app:layout_constraintTop_toTopOf="@id/selected_mood_color_view" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/selected_mood_layout"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
+            android:id="@+id/selected_mood_layout"
+            android:layout_width="182dp"
+            android:layout_height="182dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/square_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.aboutfuture.moodchart.views.CellView
+                android:id="@+id/selected_mood_color_view"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:background="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:second_color="@android:color/transparent" />
+
+            <ImageView
+                android:id="@+id/reset_selected_color"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:contentDescription="@string/reset_color_description"
+                android:padding="@dimen/spacing"
+                android:tint="@color/colorBlack"
+                app:layout_constraintBottom_toBottomOf="@id/selected_mood_color_view"
+                app:layout_constraintEnd_toEndOf="@id/selected_mood_color_view"
+                app:srcCompat="@drawable/ic_clear" />
+
+            <TextView
+                android:id="@+id/date_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_spacing"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/selected_mood_color_view"
+                app:layout_constraintTop_toTopOf="@id/selected_mood_color_view"
+                tools:text="September 30th 2018" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/moods_layout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/selected_mood_layout"
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline"
@@ -394,6 +395,86 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </ScrollView>
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/notes_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moods_layout">
 
-</android.support.constraint.ConstraintLayout>
+            <View
+                android:id="@+id/notes_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/spacing"
+                android:layout_marginEnd="@dimen/spacing"
+                android:background="@color/colorLightGray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/notes_label"
+                style="@style/MoodLabel"
+                android:text="@string/notes_label"
+                android:layout_marginTop="@dimen/spacing"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notes_line" />
+
+            <TextView
+                android:id="@+id/notes_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="@dimen/spacing"
+                android:layout_marginTop="@dimen/spacing"
+                android:layout_marginEnd="@dimen/spacing"
+                android:padding="@dimen/half_spacing"
+                android:background="@drawable/square_box"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notes_label" />
+
+            <EditText
+                android:id="@+id/notes_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing"
+                android:layout_marginTop="@dimen/spacing"
+                android:layout_marginEnd="@dimen/spacing"
+                android:padding="@dimen/half_spacing"
+                android:background="@drawable/square_box"
+                android:hint="Today's notes..."
+                android:gravity="top"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notes_label" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/notes_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginTop="@dimen/spacing"
+            android:layout_marginEnd="@dimen/spacing"
+            android:onClick="writeNote"
+            android:text="Add Notes"
+            android:textSize="@dimen/button_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notes_layout" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notes_button" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

@@ -2,6 +2,8 @@ package com.aboutfuture.moodchart.utils;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.util.DisplayMetrics;
@@ -364,6 +366,13 @@ public class SpecialUtils {
     }
 
     public static boolean isDarkColor(int color) {
-        return ColorUtils.calculateLuminance(color) < 0.3;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            return Color.luminance(color) < 0.3;
+//        } else {
+//            return ColorUtils.calculateLuminance(color) < 0.3;
+//        }
+
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ?
+                Color.luminance(color) < 0.3 : ColorUtils.calculateLuminance(color) < 0.3;
     }
 }

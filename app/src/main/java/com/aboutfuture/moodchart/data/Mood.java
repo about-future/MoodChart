@@ -17,30 +17,37 @@ public class Mood {
     private int position;
     @ColumnInfo(name = "first_color")
     private int firstColor;
+    @ColumnInfo(name = "first_color_value")
+    private double firstColorValue;
     @ColumnInfo(name = "second_color")
     private int secondColor;
+    private String notes;
 
     @Ignore
     public Mood(int firstColor) {
         this.firstColor = firstColor;
     }
 
-    public Mood(int id, int year, int month, int position, int firstColor, int secondColor) {
+    public Mood(int id, int year, int month, int position, int firstColor, double firstColorValue, int secondColor, String notes) {
         this.id = id;
         this.year = year;
         this.month = month;
         this.position = position;
         this.firstColor = firstColor;
+        this.firstColorValue = firstColorValue;
         this.secondColor = secondColor;
+        this.notes = notes;
     }
 
     @Ignore
-    public Mood(int year, int month, int position, int firstColor, int secondColor) {
+    public Mood(int year, int month, int position, int firstColor, double firstColorValue, int secondColor, String notes) {
         this.year = year;
         this.month = month;
         this.position = position;
         this.firstColor = firstColor;
+        this.firstColorValue = firstColorValue;
         this.secondColor = secondColor;
+        this.notes = notes;
     }
 
     public int getId() { return id; }
@@ -50,22 +57,14 @@ public class Mood {
     public int getFirstColor() {
         return firstColor;
     }
+    public double getFirstColorValue() { return firstColorValue; }
     public int getSecondColor() {
         return secondColor;
     }
+    public String getNotes() { return notes; }
 
     public void setId(int id) { this.id = id; }
     public void setPosition(int position) { this.position = position; }
     public void setYear(int year) { this.year = year; }
-
-    public int getCount() {
-        int count = 0;
-        if (firstColor != 0) {
-            count += 1;
-            if (secondColor != 0) {
-                count += 1;
-            }
-        }
-        return count;
-    }
+    public void setNotes(String notes) { this.notes = notes; }
 }

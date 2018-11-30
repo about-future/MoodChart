@@ -165,7 +165,9 @@ public class YearFragment extends Fragment {
                     i % 13,
                     i,
                     0,
-                    0));
+                    0,
+                    0,
+                    null));
         }
 
         AppExecutors.getInstance().diskIO().execute(new Runnable() {

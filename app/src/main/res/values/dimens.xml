@@ -14,5 +14,6 @@
     <dimen name="mood_label_font_size">24sp</dimen>
     <dimen name="conclusion_font_size">18sp</dimen>
     <dimen name="settings_mood_spacing">32dp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
 
 </resources>

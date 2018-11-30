@@ -25,6 +25,11 @@
     <string name="format_date">%s %s %d</string>
     <string name="question">How did you feel today?</string>
 
+    <string name="add_notes">Add Notes</string>
+    <string name="edit_notes">Edit Notes</string>
+    <string name="save_notes">Save Notes</string>
+    <string name="notes_label">Today\'s Notes</string>
+
     <string name="month_initial_january">J</string>
     <string name="month_initial_february">F</string>
     <string name="month_initial_march">M</string>

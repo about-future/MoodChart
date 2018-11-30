@@ -12,9 +12,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -72,10 +75,20 @@ public class TodayActivity extends AppCompatActivity {
     @BindView(R.id.reset_selected_color)
     ImageView mResetColorButton;
 
+    @BindView(R.id.notes_label)
+    TextView mNotesLabel;
+    @BindView(R.id.notes_text_view)
+    TextView mNotesTextView;
+    @BindView(R.id.notes_edit_text)
+    EditText mNotesEditText;
+    @BindView(R.id.notes_button)
+    Button mNotesButton;
+
     private AppDatabase mDb;
     private int mFirstColor = 0;
     private int mSecondColor = 0;
     private boolean isResetColorButtonVisible;
+    private String mNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +133,7 @@ public class TodayActivity extends AppCompatActivity {
                         mMoodId = mood.getId();
                         mFirstColor = mood.getFirstColor();
                         mSecondColor = mood.getSecondColor();
+
                         if (mFirstColor != 0) {
                             setFirstMoodColor(mSelectedColorView, SpecialUtils.getColor(getApplicationContext(), mFirstColor));
                             mResetColorButton.setVisibility(View.VISIBLE);
@@ -138,6 +152,9 @@ public class TodayActivity extends AppCompatActivity {
                         } else {
                             setViewColor(mResetColorButton, mSecondColor);
                         }
+
+                        mNotes = mood.getNotes();
+                        setNotes(mNotes);
                     }
                 }
             });
@@ -268,6 +285,9 @@ public class TodayActivity extends AppCompatActivity {
         setTypefaceFont(mMood11LabelTextView);
         setTypefaceFont(mMood12LabelTextView);
 
+        // Set font type for Notes label
+        setTypefaceFont(mNotesLabel);
+
         // Set value and color for each mood option
         setMoodOption(
                 (ConstraintLayout) findViewById(R.id.mood_1_layout),
@@ -354,6 +374,36 @@ public class TodayActivity extends AppCompatActivity {
                 Preferences.getMoodLabel(this, getString(R.string.pref_mood_12_label_key), getString(R.string.label_mood_12)),
                 Preferences.getMoodColor(this, getString(R.string.pref_mood_12_color_key), ContextCompat.getColor(this, R.color.mood_color_12)),
                 12);
+
+        setNotes(mNotes);
+    }
+
+    private void setNotes(String notes) {
+        if (!TextUtils.isEmpty(notes)) {
+            mNotesTextView.setText(notes);
+            mNotesTextView.setVisibility(View.VISIBLE);
+            mNotesButton.setText(getString(R.string.edit_notes));
+        } else {
+            mNotesTextView.setVisibility(View.GONE);
+            mNotesButton.setText(getString(R.string.add_notes));
+        }
+        mNotesEditText.setVisibility(View.GONE);
+    }
+
+    public void writeNote(View view) {
+        if (mNotesTextView.getVisibility() == View.GONE && mNotesEditText.getVisibility() == View.GONE) {
+            mNotesEditText.setVisibility(View.VISIBLE);
+            mNotesButton.setText(getString(R.string.save_notes));
+        } else if (mNotesTextView.getVisibility() == View.GONE && mNotesEditText.getVisibility() == View.VISIBLE){
+            mNotes = mNotesEditText.getText().toString();
+            setNotes(mNotes);
+        } else if (mNotesTextView.getVisibility() == View.VISIBLE && mNotesEditText.getVisibility() == View.GONE) {
+            mNotesEditText.setText(mNotesTextView.getText());
+            mNotesEditText.setSelection(mNotesTextView.getText().length());
+            mNotesButton.setText(getString(R.string.save_notes));
+            mNotesTextView.setVisibility(View.GONE);
+            mNotesEditText.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setTypefaceFont(TextView view) {
@@ -442,27 +492,27 @@ public class TodayActivity extends AppCompatActivity {
     }
 
     private void onSaveButtonClicked() {
-        float moodValue = 0;
+        double moodValue = 0;
         if (mFirstColor != 0) {
             moodValue = 1;
             if (mSecondColor != 0) {
                 if (mFirstColor == mSecondColor) {
-                    moodValue = 1;
                     mSecondColor = 0;
                 } else {
-                    moodValue = 0.5f;
+                    moodValue = 0.5;
                 }
             }
         }
-        //TODO: add moodValue to DB to accurately calculate the real value of the first mood in a day. Necessary for graphs
 
         final Mood mood = new Mood(
                 SpecialUtils.getCurrentYear(),
                 mPosition % 13,
                 mPosition,
                 mFirstColor,
-                mSecondColor);
-        // moodValue);
+                moodValue,
+                mSecondColor,
+                mNotes);
+
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
