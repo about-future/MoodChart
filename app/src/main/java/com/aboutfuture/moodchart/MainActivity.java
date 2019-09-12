@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.aboutfuture.moodchart.fragments.GraphsFragment;
+import com.aboutfuture.moodchart.fragments.HexaFragment;
 import com.aboutfuture.moodchart.fragments.SettingsFragment;
 import com.aboutfuture.moodchart.fragments.YearFragment;
 
@@ -62,6 +63,14 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 mTitle.setText(getText(R.string.action_chart));
                 break;
+            case 2:
+                HexaFragment hexaFragment = new HexaFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, hexaFragment)
+                        .commit();
+                mTitle.setText(getText(R.string.action_hexagons));
+                break;
+
             case 3:
                 SettingsFragment settingsFragment = new SettingsFragment();
                 getSupportFragmentManager().beginTransaction()
@@ -114,7 +123,14 @@ public class MainActivity extends AppCompatActivity
                 mNavId = 1;
             }
         } else if (id == R.id.nav_slideshow) {
-
+            if (mNavId != 2) {
+                HexaFragment hexaFragment = new HexaFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, hexaFragment)
+                        .commit();
+                mTitle.setText(getText(R.string.action_hexagons));
+                mNavId = 2;
+            }
         } else if (id == R.id.nav_settings) {
             if (mNavId != 3) {
                 SettingsFragment newFragment = new SettingsFragment();

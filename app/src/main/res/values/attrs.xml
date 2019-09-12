@@ -4,4 +4,9 @@
         <attr name="first_color" format="color"/>
         <attr name="second_color" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="HexaView">
+        <attr name="hexa_color" format="color"/>
+        <attr name="hexa_height" format="dimension"/>
+    </declare-styleable>
 </resources>

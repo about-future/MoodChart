@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.aboutfuture.moodchart.views.HexaView
+            android:id="@+id/first_hexagon"
+            style="@style/HexStyle"
+            android:text="Parcari"
+            app:hexa_color="@color/mood_color_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/colorLightGray" />
+
+        <com.aboutfuture.moodchart.views.HexaView
+            android:id="@+id/hexagon_2"
+            style="@style/HexStyle"
+            android:text="Trafic\nGreu"
+            android:layout_marginTop="0dp"
+            app:hexa_color="@color/mood_color_7"
+            app:layout_constraintBottom_toBottomOf="@id/hexagon_4"
+            app:layout_constraintStart_toStartOf="@id/hexagon_3"
+            app:layout_constraintTop_toTopOf="@id/first_hexagon"
+            app:layout_constraintEnd_toEndOf="@id/first_hexagon"
+            tools:background="@color/colorLightGray" />
+
+        <com.aboutfuture.moodchart.views.HexaView
+            android:id="@+id/hexagon_3"
+            style="@style/HexStyle"
+            android:layout_marginStart="66dp"
+            android:text="Bus"
+            android:visibility="invisible"
+            app:hexa_color="@color/mood_color_6"
+            app:layout_constraintStart_toEndOf="@id/first_hexagon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/colorLightGray" />
+
+        <com.aboutfuture.moodchart.views.HexaView
+            android:id="@+id/hexagon_4"
+            style="@style/HexStyle"
+            android:text="Muzeu"
+            app:hexa_color="@color/mood_color_7"
+            app:layout_constraintStart_toStartOf="@id/first_hexagon"
+            app:layout_constraintTop_toBottomOf="@id/first_hexagon"
+            tools:background="@color/colorLightGray" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
